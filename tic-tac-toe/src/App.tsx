@@ -1,11 +1,11 @@
 import './App.css';
 
 import React, { useState } from 'react';
-
+import { Routes, Route } from 'react-router-dom';
 import logo from './logo.svg';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(10);
 
   return (
     <div className="App">
