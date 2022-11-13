@@ -1,7 +1,17 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
-const userProfile = {
-  name: 'ドラムカン ジョーンズ',
+const defaultUserProfile = {
+  name: 'ドラムカン',
 };
-export const UserProfileContext = createContext(userProfile);
-export type UserProfile = typeof userProfile;
+
+export type UserProfile = typeof defaultUserProfile;
+export const UserProfileContext = createContext({ ...defaultUserProfile });
+
+const useUserProfile = () => {
+  const userProfile = useContext(UserProfileContext);
+  const initUserProfile = () => {
+    userProfile.name = defaultUserProfile.name;
+  };
+  return { UserProfileContext, initUserProfile };
+};
+export default useUserProfile;

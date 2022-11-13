@@ -6,13 +6,10 @@ import './App.css';
 import UserRegist from './views/UserRegist.tsx';
 import TicTacToe from './views/TicTacToe.tsx';
 
-import { UserProfile, UserProfileContext } from './contexts/UserProfile.ts';
-
 function App() {
-  const userProfile = useContext(UserProfileContext);
   return (
     <div className="App">
-      <h1>hage</h1>
+      <h1>Tic Tac Toeゲーム</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<UserRegist />} />

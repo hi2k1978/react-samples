@@ -1,16 +1,44 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useUserProfile, {
+  UserProfileContext,
+  UserProfile,
+} from '../contexts/UserProfile.ts';
 
-import { UserProfile, UserProfileContext } from '../contexts/UserProfile.ts';
+import useGamePlayers, {
+  GamePlayersContext,
+  GamePlayers,
+} from '../contexts/GamePlayers.ts';
 
 export default function TicTacToe() {
-  const userProfile = useContext(UserProfileContext);
+  const navigate = useNavigate();
+  const userProfile = useContext<UserProfile>(UserProfileContext);
+  const { initUserProfile } = useUserProfile();
+  const gamePlayers = useContext<GamePlayers>(GamePlayersContext);
+  const { setPlayerName, getPlayerOnTurn, togglePlayerOnTurn, setFirstPlayerRandomly } =
+    useGamePlayers();
+
+  setPlayerName(userProfile.name);
+  setFirstPlayerRandomly();
+  togglePlayerOnTurn();
+  const goBack = () => {
+    initUserProfile();
+    navigate('/');
+  };
   return (
     <>
-      <h2>TicTacToe</h2>
-      <div>{userProfile.name}</div>
+      <div>{gamePlayers.playerName}</div>
       <br />
-      <Link to="/">TO: Home</Link>
+      <div>手番：{getPlayerOnTurn()}</div>
+      <br />
+      <button type="submit" onClick={goBack}>
+        toggle
+      </button>
+      <br />
+      <br />
+      <button type="submit" onClick={goBack}>
+        戻る
+      </button>
     </>
   );
 }
