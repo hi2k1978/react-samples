@@ -1,37 +1,58 @@
-import { useState, useContext, useMemo } from 'react';
+import { useState, useContext, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useUserProfile, {
-  UserProfileContext,
-  UserProfile,
-} from '../contexts/UserProfile.ts';
 
-import useGamePlayers, {
-  GamePlayersContext,
-  GamePlayers,
-} from '../contexts/GamePlayers.ts';
+// import { useConstants } from '../lib/useConstants.ts';
+// import { GamePlayerKey, GamePlayerName } from '../types/types';
+
+import { GamePlayersContext } from '../contexts/GamePlayers.tsx';
 
 export default function TicTacToe() {
   const navigate = useNavigate();
-  const userProfile = useContext<UserProfile>(UserProfileContext);
-  const { initUserProfile } = useUserProfile();
-  const gamePlayers = useContext<GamePlayers>(GamePlayersContext);
-  const { setPlayerName, getPlayerOnTurn, togglePlayerOnTurn, setFirstPlayerRandomly } =
-    useGamePlayers();
+  // const { GAME_PLAYER_KEYS } = useConstants();
 
-  setPlayerName(userProfile.name);
-  setFirstPlayerRandomly();
-  togglePlayerOnTurn();
+  const {
+    initGamePlayerNames,
+    // getGamePlayerName,
+    getYourName,
+    getOpponentName,
+    getGamePlayerNameOnTurn,
+    getGamePlayerKeyOnTurn,
+    toggleGamePlayerKeyOnTurn,
+    setGamePlayerKeyOnTurnRandomly,
+  } = useContext(GamePlayersContext);
+
+  const yourName = getYourName();
+  const opponentName = getOpponentName();
+  const gamePlayerNameOnTurn = getGamePlayerNameOnTurn();
+  const gamePlayerKeyOnTurn = getGamePlayerKeyOnTurn();
+
+  const toggle = () => {
+    toggleGamePlayerKeyOnTurn();
+  };
+
   const goBack = () => {
-    initUserProfile();
+    initGamePlayerNames();
     navigate('/');
   };
+
+  useEffect(() => {
+    // 最初の手番をランダムに決定
+    setGamePlayerKeyOnTurnRandomly();
+  }, []);
+
   return (
     <>
-      <div>{gamePlayers.playerName}</div>
+      <h4>ゲーム画面</h4>
+      <div>
+        {yourName} vs {opponentName}
+      </div>
       <br />
-      <div>手番：{getPlayerOnTurn()}</div>
+      <div>
+        手番: {gamePlayerNameOnTurn} ({gamePlayerKeyOnTurn})
+      </div>
       <br />
-      <button type="submit" onClick={goBack}>
+      <br />
+      <button type="submit" onClick={toggle}>
         toggle
       </button>
       <br />

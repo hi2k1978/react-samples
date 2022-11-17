@@ -6,16 +6,20 @@ import './App.css';
 import UserRegist from './views/UserRegist.tsx';
 import TicTacToe from './views/TicTacToe.tsx';
 
+import { GamePlayersProvider } from './contexts/GamePlayers.tsx';
+
 function App() {
   return (
     <div className="App">
-      <h1>Tic Tac Toeゲーム</h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<UserRegist />} />
-          <Route path="/tictactoe" element={<TicTacToe />} />
-        </Routes>
-      </BrowserRouter>
+      <h1>丸罰ゲーム</h1>
+      <GamePlayersProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<UserRegist />} />
+            <Route path="/tictactoe" element={<TicTacToe />} />
+          </Routes>
+        </BrowserRouter>
+      </GamePlayersProvider>
     </div>
   );
 }
