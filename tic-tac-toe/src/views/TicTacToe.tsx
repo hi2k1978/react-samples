@@ -13,12 +13,12 @@ export default function TicTacToe() {
   // const { GAME_PLAYER_KEYS } = useConstants();
 
   const {
-    initGamePlayerNames,
-    // getGamePlayerName,
+    gamePlayers,
     getYourName,
     getOpponentName,
     getGamePlayerNameOnTurn,
-    getGamePlayerKeyOnTurn,
+    initGamePlayerNames,
+    gamePlayerKeyOnTurn,
     toggleGamePlayerKeyOnTurn,
     setGamePlayerKeyOnTurnRandomly,
   } = useContext(GamePlayersContext);
@@ -26,16 +26,15 @@ export default function TicTacToe() {
   const yourName = getYourName();
   const opponentName = getOpponentName();
   const gamePlayerNameOnTurn = getGamePlayerNameOnTurn();
-  const gamePlayerKeyOnTurn = getGamePlayerKeyOnTurn();
 
   const toggle = useCallback(() => {
     toggleGamePlayerKeyOnTurn();
-  });
+  }, [gamePlayerKeyOnTurn]);
 
   const goBack = useCallback(() => {
     initGamePlayerNames();
     navigate('/');
-  });
+  }, [gamePlayers]);
 
   useEffect(() => {
     // 最初の手番をランダムに決定
@@ -48,7 +47,7 @@ export default function TicTacToe() {
       <YouVsOpponentView yourName={yourName} opponentName={opponentName} />
       <GamePlayerOnTurnView gamePlayerNameOnTurn={gamePlayerNameOnTurn} />
       <br />
-      <button type="submit" onClick={toggle}>
+      <button type="button" onClick={toggle}>
         toggle
       </button>
       <br />

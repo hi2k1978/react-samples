@@ -13,17 +13,18 @@ const useGamePlayers = (yourName: GamePlayerName, opponentName: GamePlayerName) 
 
   const getYourName = useCallback((): GamePlayerName => {
     return gamePlayers.get(GAME_PLAYER_KEYS.YOU);
-  });
+  }, [gamePlayers]);
 
   const getOpponentName = useCallback((): GamePlayerName => {
     return gamePlayers.get(GAME_PLAYER_KEYS.OPPONENT);
-  });
+  }, [gamePlayers]);
 
   const setGamePlayerNames = useCallback(
     (you: GamePlayerName, opponent: GamePlayerName) => {
       gamePlayers.set(GAME_PLAYER_KEYS.YOU, you);
       gamePlayers.set(GAME_PLAYER_KEYS.OPPONENT, opponent);
     },
+    [gamePlayers],
   );
 
   return [gamePlayers, { getYourName, getOpponentName, setGamePlayerNames }];
