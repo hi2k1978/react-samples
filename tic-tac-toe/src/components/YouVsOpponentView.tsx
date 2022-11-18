@@ -6,7 +6,7 @@ type Props = {
   opponentName: GamePlayerName;
 };
 
-const YouVsOpponentView: FC<Props> = React.memo((props) => {
+const YouVsOpponentView: FC<Props> = React.memo((props: Props) => {
   const { yourName, opponentName } = props;
   return (
     <div>

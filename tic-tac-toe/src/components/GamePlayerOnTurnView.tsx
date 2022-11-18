@@ -5,7 +5,7 @@ type Props = {
   gamePlayerNameOnTurn: GamePlayerName;
 };
 
-const GamePlayerOnTurnView = React.memo((props) => {
+const GamePlayerOnTurnView = React.memo((props: Props) => {
   const { gamePlayerNameOnTurn } = props;
   return <div>手番: {gamePlayerNameOnTurn}</div>;
 });
