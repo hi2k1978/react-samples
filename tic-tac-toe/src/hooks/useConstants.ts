@@ -1,4 +1,4 @@
-export const useConstants = () => {
+const useConstants = () => {
   const GAME_PLAYER_KEYS = {
     YOU: 0,
     OPPONENT: 1,
@@ -21,5 +21,8 @@ export const useConstants = () => {
     FIRST_TURN: 1,
   } as const;
 
-  return { GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN };
+  const SLEEP_TIME = 1000;
+
+  return [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN, SLEEP_TIME }];
 };
+export default useConstants;

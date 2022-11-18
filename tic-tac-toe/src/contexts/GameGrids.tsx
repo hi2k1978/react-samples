@@ -1,9 +1,7 @@
 import React, { createContext, FC, ReactNode, useState } from 'react';
-
-import { useConstants } from '../lib/useConstants';
 import { GamePlayerKey, GamePlayerName } from '../types/types';
 
-const { GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN } = useConstants();
+import useConstants from '../hooks/useConstants';
 
 export type GameGrid = {
   occupied: boolean;
@@ -33,6 +31,7 @@ type ContextType = {
 
 export const GameGridsContext = createContext<ContextType>({} as ContextType);
 export const GameGridsProvider: FC<Props> = ({ children }) => {
+  const [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN }] = useConstants();
   const [gameGrids, setGameGrids] = useState('hoge');
   const [onGame, setOnGame] = useState<boolean>(true);
   const [gameTurn, setGameTurn] = useState<number>(GAME_TURN.FIRST_TURN);
