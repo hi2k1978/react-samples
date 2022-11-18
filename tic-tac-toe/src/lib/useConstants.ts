@@ -17,5 +17,9 @@ export const useConstants = () => {
     ROW_MAX: 3,
   } as const;
 
-  return { GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS };
+  const GAME_TURN = {
+    FIRST_TURN: 1,
+  } as const;
+
+  return { GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN };
 };
