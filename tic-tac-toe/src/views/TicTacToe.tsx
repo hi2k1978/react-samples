@@ -1,10 +1,12 @@
-import { useState, useContext, useMemo, useEffect } from 'react';
+import React, { useState, useContext, useMemo, useEffect, useCallback } from 'react';
+// import { GamePlayerKey, GamePlayerName } from '../types/types';
 import { useNavigate } from 'react-router-dom';
 
-// import { useConstants } from '../lib/useConstants.ts';
-// import { GamePlayerKey, GamePlayerName } from '../types/types';
-
+// import useConstants from '../lib/useConstants.ts';
 import { GamePlayersContext } from '../contexts/GamePlayers.tsx';
+
+import YouVsOpponentView from '../components/YouVsOpponentView.tsx';
+import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView.tsx';
 
 export default function TicTacToe() {
   const navigate = useNavigate();
@@ -26,14 +28,14 @@ export default function TicTacToe() {
   const gamePlayerNameOnTurn = getGamePlayerNameOnTurn();
   const gamePlayerKeyOnTurn = getGamePlayerKeyOnTurn();
 
-  const toggle = () => {
+  const toggle = useCallback(() => {
     toggleGamePlayerKeyOnTurn();
-  };
+  });
 
-  const goBack = () => {
+  const goBack = useCallback(() => {
     initGamePlayerNames();
     navigate('/');
-  };
+  });
 
   useEffect(() => {
     // 最初の手番をランダムに決定
@@ -43,14 +45,8 @@ export default function TicTacToe() {
   return (
     <>
       <h4>ゲーム画面</h4>
-      <div>
-        {yourName} vs {opponentName}
-      </div>
-      <br />
-      <div>
-        手番: {gamePlayerNameOnTurn} ({gamePlayerKeyOnTurn})
-      </div>
-      <br />
+      <YouVsOpponentView yourName={yourName} opponentName={opponentName} />
+      <GamePlayerOnTurnView gamePlayerNameOnTurn={gamePlayerNameOnTurn} />
       <br />
       <button type="submit" onClick={toggle}>
         toggle
@@ -58,7 +54,7 @@ export default function TicTacToe() {
       <br />
       <br />
       <button type="submit" onClick={goBack}>
-        戻る
+        名前入力に戻る
       </button>
     </>
   );
