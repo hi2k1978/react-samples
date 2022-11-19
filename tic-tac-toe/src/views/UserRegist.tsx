@@ -31,7 +31,7 @@ export default function UserRegist() {
         <input ref={inputOpponentName} type="text" defaultValue={opponentName} />
         <br />
         <br />
-        <input type="button" type="submit" value="ゲーム スタート" />
+        <input type="submit" value="ゲーム スタート" />
       </form>
       <br />
     </>
