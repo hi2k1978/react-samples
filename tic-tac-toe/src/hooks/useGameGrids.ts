@@ -9,17 +9,20 @@ const unoccupiedGameGrid = {
   oddTurn: false,
 } as const;
 
-const { MIN_COL, MAX_COL, MIN_ROW, MAX_ROW } = GAME_GRIDS;
-
 const useGameGrids = () => {
+  const [{ GAME_GRIDS }] = useConstants();
+
   let defaultGameGrids: GameGrid[][];
+  defaultGameGrids = new Array<Array<GameGrid>>();
   for (let ii = GAME_GRIDS.MIN_COL; ii < GAME_GRIDS.MAX_COL; ii++) {
-    defaultGameGrids[ii] = [];
+    let row: GameGrids[] = new Array<GameGrid>();
+    //defaultGameGrids[ii] = new Array();
     for (let jj = GAME_GRIDS.MIN_ROW; jj < GAME_GRIDS.MAX_ROW; jj++) {
-      defaultGameGrids[ii][jj] = {
+      row.push({
         ...unoccupiedGameGrid,
-      };
+      });
     }
+    defaultGameGrids.push(row);
   }
 
   const [gameGrids, setGameGrids] = useState<GameGrid[][]>(defaultGameGrids);

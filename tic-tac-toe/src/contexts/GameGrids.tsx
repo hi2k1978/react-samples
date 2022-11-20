@@ -1,5 +1,5 @@
 import React, { createContext, FC, ReactNode, useState } from 'react';
-import { GameGrid, GamePlayerKey, GamePlayerName } from '../types/types';
+import { GamePlayerKey, GamePlayerName, GameGrid, GameResult } from '../types/types';
 
 import useConstants from '../hooks/useConstants';
 import useGameGrids from '../hooks/useGameGrids';
@@ -11,19 +11,28 @@ type Props = {
 };
 
 type ContextType = {
+  gameGrids: GameGrid[][];
+  gameGrids: () => void;
   initGameGrids: () => void;
+  getGameGrid: (col: number, row: number) => void;
   setGameGrid: (
-    column: number,
+    col: number,
     row: number,
     gamePlayerKey: GamePlayerKey,
     gameTurn: number,
   ) => void;
-  resetGameGrid: (column: number, row: number) => void;
-  checkOnGame: () => void;
+  resetGameGrid: (col: number, row: number) => void;
+  checkGameEnd: (gamePlayerKey: GamePlayerKey) => void;
+  checkAllOccupied: () => void;
+  onGame: boolean;
+  gameResult: GameResult;
+  initGameProgress: () => void;
   toggleOnGame: () => void;
-  getGameTurn: () => void;
-  setGameTurnNext: () => void;
-  setGameTurnPrev: (numberOfTurn: number) => void;
+  setGameResult: (gameResult: GameResult) => void;
+  gameTurn: number;
+  initGameTurn: () => void;
+  advanceGameTurn: (nn: number) => void;
+  rewindedGameTurn: (nn: number) => void;
 };
 
 export const GameGridsContext = createContext<ContextType>({} as ContextType);
@@ -42,49 +51,33 @@ export const GameGridsProvider: FC<Props> = ({ children }) => {
       checkAllOccupied,
     },
   ] = useGameGrids();
+  const [onGame, gameResult, { initGameProgress, toggleOnGame, setGameResult }] =
+    useGameMode();
 
-  const [onGame, gameResult, { toggleOnGame, setGameResult }] = useGameMode();
-
-  const [gameTurn, { advanceGameTurn, rewindedGameTurn }] = useGameTurn(
-    GAME_TURN.FIRST_TURN,
-  );
-
-  const checkOnGame = () => {
-    return onGame;
-  };
-  const toggleOnGame = () => {
-    setOnGame(!onGame);
-  };
-  const getGameTurn = () => {
-    return gameTurn;
-  };
-  const setGameTurnNext = () => {
-    setGameTurn(gameTurn + 1);
-  };
-
-  const setGameTurnPrev = (numberOfTurn: number) => {
-    const nextGameTurn = gameTurn - numberOfTurn;
-    if (nextGameTurn < 1) {
-      const errorMessage = 'Game Turn is less than 1.';
-      console.error(errorMessage);
-      throw new Error(errorMessage);
-    }
-    setGameTurn(nextGameTurn);
-  };
+  const [gameTurn, { initGameTurn, advanceGameTurn, rewindedGameTurn }] = useGameTurn();
 
   return (
-    <GameGrids.Provider
+    <GameGridsContext.Provider
       value={{
+        gameGrids,
         initGameGrids,
+        getGameGrid,
         setGameGrid,
         resetGameGrid,
-        checkOnGame,
+        checkGameEnd,
+        checkAllOccupied,
+        onGame,
+        gameResult,
+        initGameProgress,
         toggleOnGame,
-        getGameTurn,
-        setGameTurnNext,
+        setGameResult,
+        gameTurn,
+        initGameTurn,
+        advanceGameTurn,
+        rewindedGameTurn,
       }}
     >
       {children}
-    </GameGrids.Provider>
+    </GameGridsContext.Provider>
   );
 };

@@ -1,8 +1,13 @@
 import React, { useCallback, useState } from 'react';
+import useConstants from '../hooks/useConstants.ts';
 
-const useGameTurn = (initialTurn: number) => {
-  const [gameTurn, setGameTurn] = useState<number>(initialTurn);
+const useGameTurn = () => {
+  const [{ GAME_TURN }] = useConstants();
+  const [gameTurn, setGameTurn] = useState<number>(GAME_TURN.FIRST_TURN);
 
+  const initGameTurn = () => {
+    setGameTurn(GAME_TURN.FIRST_TURN);
+  };
   const advanceGameTurn = (nn: number) => {
     setGameTurn(gameTurn + nn);
   };
@@ -17,6 +22,6 @@ const useGameTurn = (initialTurn: number) => {
     setGameTurn(rewindedGameTurn);
   };
 
-  return [gameTurn, { advanceGameTurn, rewindedGameTurn }];
+  return [gameTurn, { initGameTurn, advanceGameTurn, rewindGameTurn }];
 };
 export default useGameTurn;
