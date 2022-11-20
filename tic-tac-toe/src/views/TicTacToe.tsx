@@ -1,12 +1,11 @@
-import React, { useState, useContext, useMemo, useEffect, useCallback } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 // import { GamePlayerKey, GamePlayerName } from '../types/types';
 import { useNavigate } from 'react-router-dom';
 
+import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView.tsx';
+import YouVsOpponentView from '../components/YouVsOpponentView.tsx';
 // import useConstants from '../lib/useConstants.ts';
 import { GamePlayersContext } from '../contexts/GamePlayers.tsx';
-
-import YouVsOpponentView from '../components/YouVsOpponentView.tsx';
-import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView.tsx';
 
 export default function TicTacToe() {
   const navigate = useNavigate();

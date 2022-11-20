@@ -1,12 +1,13 @@
-import React, { useState, useContext } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import logo from './logo.svg';
-
 import './App.css';
-import UserRegist from './views/UserRegist.tsx';
-import TicTacToe from './views/TicTacToe.tsx';
 
+import React, { useContext, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { GameGridsProvider } from './contexts/GameGrids.tsx';
 import { GamePlayersProvider } from './contexts/GamePlayers.tsx';
+import logo from './logo.svg';
+import TicTacToe from './views/TicTacToe.tsx';
+import UserRegist from './views/UserRegist.tsx';
 
 function App() {
   return (

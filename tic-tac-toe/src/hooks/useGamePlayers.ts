@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import { GamePlayerKey, GamePlayerName } from '../types/types';
+import React, { useCallback, useState } from 'react';
+
 import useConstants from '../hooks/useConstants';
+import { GamePlayerKey, GamePlayerName } from '../types/types';
 
 const useGamePlayers = (yourName: GamePlayerName, opponentName: GamePlayerName) => {
   const [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES }] = useConstants();

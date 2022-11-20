@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import { GamePlayerKey } from '../types/types';
+import React, { useCallback, useState } from 'react';
+
 import useConstants from '../hooks/useConstants';
+import { GamePlayerKey } from '../types/types';
 
 const useGamePlayerKeyOnTurn = (gamePlayerKey: GamePlayerKey) => {
   const [{ GAME_PLAYER_KEYS }] = useConstants();

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import { GamePlayerName } from '../types/types';
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
   opponentName: GamePlayerName;
 };
 
-const YouVsOpponentView: FC<Props> = React.memo((props: Props) => {
+const YouVsOpponentView: FC<Props> = React.memo(function show(props: Props) {
   const { yourName, opponentName } = props;
   return (
     <div>

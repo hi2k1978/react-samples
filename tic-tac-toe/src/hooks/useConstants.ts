@@ -11,18 +11,33 @@ const useConstants = () => {
   } as const;
 
   const GAME_GRIDS = {
-    COLUMN_MIN: 0,
-    COLUMN_MAX: 3,
-    ROW_MIN: 0,
-    ROW_MAX: 3,
+    MIN_COL: 0,
+    MAX_COL: 3,
+    MIN_ROW: 0,
+    MAX_ROW: 3,
   } as const;
 
   const GAME_TURN = {
     FIRST_TURN: 1,
   } as const;
 
+  const GAME_RESULT = {
+    DRAW: 0,
+    YOU_WIN: 1,
+    OPPONENT_WIN: 2,
+  } as const;
+
   const SLEEP_TIME = 1000;
 
-  return [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN, SLEEP_TIME }];
+  return [
+    {
+      GAME_PLAYER_KEYS,
+      GAME_PLAYER_NAMES,
+      GAME_GRIDS,
+      GAME_TURN,
+      GAME_RESULT,
+      SLEEP_TIME,
+    },
+  ];
 };
 export default useConstants;
