@@ -25,11 +25,8 @@ graph TD;
 
 | id            | hige    | nahunah       |
 |---------------|---------|---------------|
-| hanuanuhnahun | nuhnhau | inihnhunahun  |
-| ^             | ^       | inuhaunhanuh  |
+| hanuanuhnahun | nuhnhau | inihnhunahun<br>hhunahunahun  |
 | hunahnuha     | >       | - unanhun     |
-| ^             | ^       | - hnahunh     |
-| ^             | ^       | - uhanuhenahu |
 
 ```python
 print('hoge')
