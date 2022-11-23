@@ -15,7 +15,7 @@ import useConstants from '../hooks/useConstants.ts';
 import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView.tsx';
 import YouVsOpponentView from '../components/YouVsOpponentView.tsx';
 import GameModeView from '../components/GameModeView.tsx';
-import GameGridView from '../components/GameGridView.tsx';
+import GameGridsView from '../components/GameGridsView.tsx';
 
 export default function TicTacToe() {
   const navigate = useNavigate();
@@ -112,28 +112,12 @@ export default function TicTacToe() {
         yourName={yourName}
         opponentName={opponentName}
       />
-      <div>
-        <table>
-          <tbody>
-            {[0, 1, 2].map((row) => (
-              <tr key={row}>
-                {[0, 1, 2].map((col) => (
-                  <td key={col}>
-                    <GameGridView
-                      row={row}
-                      col={col}
-                      gameGrid={gameGrids[row][col]}
-                      onClick={() =>
-                        selectGameGrid(row, col, gamePlayerKeyOnTurn, gameTurn)
-                      }
-                    />
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <GameGridsView
+        gameGrids={gameGrids}
+        gamePlayerKey={gamePlayerKeyOnTurn}
+        gameTurn={gameTurn}
+        selectGameGrid={selectGameGrid}
+      />
       <div>
         <button type="button" onClick={resetGame}>
           リセット
