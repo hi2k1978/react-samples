@@ -11,10 +11,15 @@ const useConstants = () => {
   } as const;
 
   const GAME_GRIDS = {
-    MIN_COL: 0,
-    MAX_COL: 3,
     MIN_ROW: 0,
     MAX_ROW: 3,
+    MIN_COL: 0,
+    MAX_COL: 3,
+  } as const;
+
+  const GAME_MODE = {
+    GAME_OVER: 0,
+    ON_GAME: 1,
   } as const;
 
   const GAME_TURN = {
@@ -24,10 +29,10 @@ const useConstants = () => {
   } as const;
 
   const GAME_RESULT = {
-    ON_GAME: -1,
-    DRAW: 0,
-    YOU_WIN: 1,
-    OPPONENT_WIN: 2,
+    NONE: 0,
+    DRAW: 1,
+    YOU_WIN: 2,
+    OPPONENT_WIN: 3,
   } as const;
 
   const SLEEP_TIME = 1000;
