@@ -102,7 +102,7 @@ const useGameGrids = () => {
     return false;
   };
 
-  const checkAllOccupied = (): boolean => {
+  const checkDraw = (): boolean => {
     const maxOccupiedCount = GAME_GRIDS.MAX_ROW * GAME_GRIDS.MAX_COL;
     let occupiedCount = 0;
     for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
@@ -112,7 +112,6 @@ const useGameGrids = () => {
         }
       }
     }
-    console.log(occupiedCount);
     return occupiedCount === maxOccupiedCount;
   };
 
@@ -124,7 +123,7 @@ const useGameGrids = () => {
       setGameGrid,
       resetGameGrid,
       checkWin,
-      checkAllOccupied,
+      checkDraw,
     },
   ];
 };

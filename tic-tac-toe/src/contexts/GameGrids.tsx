@@ -20,7 +20,7 @@ type ContextType = {
   ) => void;
   resetGameGrid: (col: number, row: number) => void;
   checkWin: (gamePlayerKey: GamePlayerKey) => void;
-  checkAllOccupied: () => void;
+  checkDraw: () => void;
 };
 
 export const GameGridsContext = createContext<ContextType>({} as ContextType);
@@ -30,14 +30,7 @@ export const GameGridsProvider: FC<Props> = ({ children }) => {
 
   const [
     gameGrids,
-    {
-      initGameGrids,
-      getGameGrid,
-      setGameGrid,
-      resetGameGrid,
-      checkWin,
-      checkAllOccupied,
-    },
+    { initGameGrids, getGameGrid, setGameGrid, resetGameGrid, checkWin, checkDraw },
   ] = useGameGrids();
 
   return (
@@ -49,7 +42,7 @@ export const GameGridsProvider: FC<Props> = ({ children }) => {
         setGameGrid,
         resetGameGrid,
         checkWin,
-        checkAllOccupied,
+        checkDraw,
       }}
     >
       {children}
