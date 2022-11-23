@@ -44,6 +44,7 @@ export default function TicTacToe() {
 
   const { gameTurn, gamePlayerKeyOnTurn, initGameTurn, advanceGameTurn, rewindGameTurn } =
     useContext(GameTurnContext);
+
   const yourName = getYourName();
   const opponentName = getOpponentName();
   const gamePlayerNameOnTurn = getGamePlayerName(gamePlayerKeyOnTurn);
@@ -53,7 +54,8 @@ export default function TicTacToe() {
     // 盤面の初期化
     initGameGrids();
     // ターン初期化時、最初の手番をランダムに決定
-    initGameTurn(getGamePlayerKeyRandomly()); // initGameMode
+    initGameTurn(getGamePlayerKeyRandomly());
+    // ゲームの状態を対戦中に変更
     initGameState();
   };
 
@@ -78,6 +80,7 @@ export default function TicTacToe() {
   }, [gameTurn, gamePlayerKeyOnTurn]);
 
   const goBack = useCallback(() => {
+    // 名前入力画面に戻る前に、名前を初期化
     initGamePlayerNames();
     navigate('/');
   }, [gamePlayers]);
