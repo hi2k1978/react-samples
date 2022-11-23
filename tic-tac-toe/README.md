@@ -10,7 +10,11 @@ npm run dev
 
 Class
 ```mermaid
-A -> B
+graph TD;
+	A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
 ```
 
 ```python
