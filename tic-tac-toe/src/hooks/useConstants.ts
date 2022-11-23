@@ -24,8 +24,8 @@ const useConstants = () => {
 
   const GAME_TURN = {
     FIRST_TURN: 1,
-    TURN_INCREMENT: 1,
-    TURN_DECREMENT: 2,
+    TURN_ADVANCE: 1,
+    TURN_REWIND: 1,
   } as const;
 
   const GAME_RESULT = {

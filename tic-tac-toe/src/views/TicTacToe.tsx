@@ -78,7 +78,7 @@ export default function TicTacToe() {
   };
 
   const toggleGamePlayerOnNextTurn = () => {
-    advanceGameTurn(GAME_TURN.TURN_INCREMENT);
+    advanceGameTurn();
     toggleGamePlayerKeyOnTurn();
   };
 

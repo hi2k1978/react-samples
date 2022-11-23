@@ -31,8 +31,8 @@ type ContextType = {
   setGameResult: (gameResult: GameResult) => void;
   gameTurn: number;
   initGameTurn: () => void;
-  advanceGameTurn: (nn: number) => void;
-  rewindedGameTurn: (nn: number) => void;
+  advanceGameTurn: () => void;
+  rewindedGameTurn: () => void;
 };
 
 export const GameGridsContext = createContext<ContextType>({} as ContextType);

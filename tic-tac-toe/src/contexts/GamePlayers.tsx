@@ -17,7 +17,7 @@ type ContextType = {
   getGamePlayerNameOnTurn: () => void;
   setGamePlayerNames: (you: GamePlayerName, opponent: GamePlayerName) => void;
   initGamePlayerNames: () => void;
-  // Game Player On Turn
+  // Game Player Key On Turn
   gamePlayerKeyOnTurn: GamePlayerKey;
   toggleGamePlayerKeyOnTurn: () => void;
   setGamePlayerKeyOnTurnRandomly: () => void;

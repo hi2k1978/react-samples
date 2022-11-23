@@ -8,12 +8,12 @@ const useGameTurn = () => {
   const initGameTurn = () => {
     setGameTurn(GAME_TURN.FIRST_TURN);
   };
-  const advanceGameTurn = (nn: number) => {
-    setGameTurn(gameTurn + nn);
+  const advanceGameTurn = () => {
+    setGameTurn(gameTurn + GAME_TURN.TURN_ADVANCE);
   };
 
-  const rewindGameTurn = (nn: number) => {
-    const rewindedGameTurn = gameTurn - nn;
+  const rewindGameTurn = () => {
+    const rewindedGameTurn = gameTurn - GAME_TURN.TURN_REWIND;
     if (rewindedGameTurn < 1) {
       const errorMessage = 'Game Turn is less than 1.';
       console.error(errorMessage);
