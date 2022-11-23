@@ -5,8 +5,12 @@ dist-ssr
 *.local
 node_modules/*
 
+\.\#*
 \#*
 *~
 
+README.docx
 README.html
+README.odt
+README.pdf
 
