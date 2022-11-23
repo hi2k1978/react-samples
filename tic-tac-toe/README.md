@@ -1,33 +1,16 @@
-# Run React
-```
-npm run dev
-```
+# ○×ゲーム(TicTacToe)
 
-# 画面説明
-
-@import "./md/views.csv"
-
-@import "./md/hoge.md"
-
-@import "hoge.md"
+## 画面
 
 
-# Class Diagram
+|   | 物理名         | 論理名               | 説明                             |
+|---|----------------|----------------------|----------------------------------|
+| 1 | UserRegist.tsx | プレイヤー名入力画面 | あなたと対戦者の名前を入力する。 |
+| 2 | TicTacToe.tsx  | ○×ゲーム画面         | ○×ゲームを行う。                 |
 
-Class
-```mermaid
-graph TD;
-	A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
+## コンテキスト
 
-| id            | hige    | nahunah       |
-|---------------|---------|---------------|
-| hanuanuhnahun | nuhnhau | inihnhunahun<br>hhunahunahun  |
-| hunahnuha     | >       | - unanhun     |
-
-```python
-print('hoge')
-```
+|   | 物理名          | 論理名                 | 説明                         |
+|---|-----------------|------------------------|------------------------------|
+| 1 | GamePlayers.tsx | プレイヤーコンテキスト | プレイヤーの情報を管理する。 |
+| 2 | GameGrids.tsx   | ゲームコンテキスト     | ゲームの情報を管理する。     |
