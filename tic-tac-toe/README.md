@@ -23,15 +23,13 @@ graph TD;
     C-->D;
 ```
 
-| id            | hige       | nahunah       |
-|---------------|------------|---------------|
-| hanuanuhnahun | nuhnhau    | inihnhunahun  |
-| >             | >          | inuhaunhanuh  |
-|---------------|------------|---------------|
-| hunahnuha     | anhunahunh | - unanhun     |
-|               |            | - hnahunh     |
-|               |            | - uhanuhenahu |
-|---------------|------------|---------------|
+| id            | hige    | nahunah       |
+|---------------|---------|---------------|
+| hanuanuhnahun | nuhnhau | inihnhunahun  |
+| ^             | ^       | inuhaunhanuh  |
+| hunahnuha     | >       | - unanhun     |
+| ^             | ^       | - hnahunh     |
+| ^             | ^       | - uhanuhenahu |
 
 ```python
 print('hoge')
