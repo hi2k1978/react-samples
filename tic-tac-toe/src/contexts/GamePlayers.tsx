@@ -25,17 +25,17 @@ type ContextType = {
 
 export const GamePlayersContext = createContext<ContextType>({} as ContextType);
 export const GamePlayersProvider: FC<Props> = ({ children }) => {
-  const [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES }] = useConstants();
+  const [{ GAME_PLAYER_KEYS, DEFAULT_GAME_PLAYER_NAMES }] = useConstants();
   const [
     gamePlayerKeyOnTurn,
     { toggleGamePlayerKeyOnTurn, setGamePlayerKeyOnTurnRandomly },
   ] = useGamePlayerKeyOnTurn(GAME_PLAYER_KEYS.YOU);
 
   const [gamePlayers, { getYourName, getOpponentName, setGamePlayerNames }] =
-    useGamePlayers(GAME_PLAYER_NAMES.YOU, GAME_PLAYER_NAMES.OPPONENT);
+    useGamePlayers(DEFAULT_GAME_PLAYER_NAMES.YOU, DEFAULT_GAME_PLAYER_NAMES.OPPONENT);
 
   const initGamePlayerNames = useCallback(() => {
-    setGamePlayerNames(GAME_PLAYER_NAMES.YOU, GAME_PLAYER_NAMES.OPPONENT);
+    setGamePlayerNames(DEFAULT_GAME_PLAYER_NAMES.YOU, DEFAULT_GAME_PLAYER_NAMES.OPPONENT);
   }, [gamePlayers]);
 
   const getGamePlayerNameOnTurn = useCallback((): GamePlayerName => {

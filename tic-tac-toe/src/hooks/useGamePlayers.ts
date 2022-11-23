@@ -4,7 +4,7 @@ import useConstants from '../hooks/useConstants';
 import { GamePlayerKey, GamePlayerName } from '../types/types';
 
 const useGamePlayers = (yourName: GamePlayerName, opponentName: GamePlayerName) => {
-  const [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES }] = useConstants();
+  const [{ GAME_PLAYER_KEYS }] = useConstants();
   const defaultGamePlayerMap = new Map<GamePlayerKey, GamePlayerName>();
   defaultGamePlayerMap.set(GAME_PLAYER_KEYS.YOU, yourName);
   defaultGamePlayerMap.set(GAME_PLAYER_KEYS.OPPONENT, opponentName);

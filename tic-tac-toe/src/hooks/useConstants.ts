@@ -5,7 +5,7 @@ const useConstants = () => {
   } as const;
   type GamePlayerKeys = typeof GAME_PLAYER_KEYS[keyof typeof GAME_PLAYER_KEYS];
 
-  const GAME_PLAYER_NAMES = {
+  const DEFAULT_GAME_PLAYER_NAMES = {
     YOU: '空条Ｑ太郎',
     OPPONENT: 'ドラムカン・ジョーンズ',
   } as const;
@@ -40,7 +40,7 @@ const useConstants = () => {
   return [
     {
       GAME_PLAYER_KEYS,
-      GAME_PLAYER_NAMES,
+      DEFAULT_GAME_PLAYER_NAMES,
       GAME_GRIDS,
       GAME_TURN,
       GAME_RESULT,
