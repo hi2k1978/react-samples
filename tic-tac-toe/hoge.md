@@ -1,5 +1,0 @@
-# hoge
-
-- hoge
-  - moge
-  - hige
