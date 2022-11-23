@@ -14,11 +14,12 @@ import useConstants from '../hooks/useConstants.ts';
 // Views
 import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView.tsx';
 import YouVsOpponentView from '../components/YouVsOpponentView.tsx';
+import GameModeView from '../components/GameModeView.tsx';
+import GameGridView from '../components/GameGridView.tsx';
 
 export default function TicTacToe() {
   const navigate = useNavigate();
-  const [{ GAME_TURN }] = useConstants();
-
+  const [{ GAME_TURN, GAME_MODE, GAME_RESULT }] = useConstants();
   const {
     gameGrids,
     initGameGrids,
@@ -59,25 +60,33 @@ export default function TicTacToe() {
     initGameState();
   };
 
-  const selectGrid = (
+  const selectGameGrid = (
     col: number,
     row: number,
     gamePlayerKey: GamePlayerKey,
     gameTurn: number,
   ) => {
+    const selectedGameGrid = getGameGrid(col, row);
+    if (selectedGameGrid.occupied === true) return;
     // プレイヤーがGridを選択
     setGameGrid(col, row, gamePlayerKey, gameTurn);
     // 勝利判定
-    if (checkGameEnd(gamePlayerKey)) setGameEndWithWin(gamePlayerKey);
+    if (checkWin(gamePlayerKey)) {
+      setGameEndWithWin(gamePlayerKey);
+      return;
+    }
     // グリッドが全て選択されたかの判定
-    if (checkAllOccupied()) setGameEndWithDraw();
+    if (checkAllOccupied()) {
+      setGameEndWithDraw();
+      return;
+    }
     // 次のターンに進め、プレイヤーを交代
-    toggleGamePlayerOnNextTurn();
+    advanceGameTurn();
   };
 
-  const testGame = useCallback(() => {
-    advanceGameTurn();
-  }, [gameTurn, gamePlayerKeyOnTurn]);
+  const resetGame = useCallback(() => {
+    initGame();
+  }, [gameGrids, gameTurn, gamePlayerKeyOnTurn, gameMode, gameResult]);
 
   const goBack = useCallback(() => {
     // 名前入力画面に戻る前に、名前を初期化
@@ -97,14 +106,36 @@ export default function TicTacToe() {
         gamePlayerNameOnTurn={gamePlayerNameOnTurn}
         gameTurn={gameTurn}
       />
-      <br />
-      {/*
-          for(ii= GAME_GRIDS_MIN_ROW ... GAME_GRIDS_MAX_ROW)
-          for(jj= GAME_GRIDS_MIN_COL ... GAME_GRIDS_MAX_COL)
-          <GameGridView gameGrid={gameGrids[ii][jj]} onClick={() => setGameGrid(ii, jj, gamePlayerKey, gameTurn)} />
-        */}
+      <GameModeView
+        gameMode={gameMode}
+        gameResult={gameResult}
+        yourName={yourName}
+        opponentName={opponentName}
+      />
       <div>
-        <button type="button" onClick={testGame}>
+        <table>
+          <tbody>
+            {[0, 1, 2].map((row) => (
+              <tr key={row}>
+                {[0, 1, 2].map((col) => (
+                  <td key={col}>
+                    <GameGridView
+                      row={row}
+                      col={col}
+                      gameGrid={gameGrids[row][col]}
+                      onClick={() =>
+                        selectGameGrid(row, col, gamePlayerKeyOnTurn, gameTurn)
+                      }
+                    />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button type="button" onClick={resetGame}>
           リセット
         </button>
         <button type="submit" onClick={goBack} style={{ marginLeft: '8px' }}>

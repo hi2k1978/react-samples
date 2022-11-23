@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import useConstants from '../hooks/useConstants';
 import { GameGrid, GamePlayerKey, GamePlayerName } from '../types/types';
 
-const unoccupiedGameGrid = {
+const unoccupiedGameGrid: GameGrid = {
   occupied: false,
   gamePlayerKey: undefined,
   oddTurn: false,
@@ -16,7 +16,6 @@ const useGameGrids = () => {
   defaultGameGrids = new Array<Array<GameGrid>>();
   for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
     let row: GameGrids[] = new Array<GameGrid>();
-    //defaultGameGrids[ii] = new Array();
     for (let jj = GAME_GRIDS.MIN_COL; jj < GAME_GRIDS.MAX_COL; jj++) {
       row.push({
         ...unoccupiedGameGrid,
@@ -37,26 +36,26 @@ const useGameGrids = () => {
     }
   };
 
-  const getGameGrid = (col, row): GameGrid => {
-    return gameGrid[col][row];
+  const getGameGrid = (row: number, col: number): GameGrid => {
+    return gameGrids[row][col];
   };
 
   const setGameGrid = (
-    col: number,
     row: number,
+    col: number,
     gamePlayerKey: GamePlayerKey,
     gameTurn: number,
   ) => {
     const oddTurn = !(gameTurn % 2 === 0);
-    gameGrids[col][row] = {
+    gameGrids[row][col] = {
       occupied: true,
       gamePlayerKey: gamePlayerKey,
       oddTurn: oddTurn,
     };
   };
 
-  const resetGameGrid = (col: number, row: number) => {
-    gameGrids[col][row] = {
+  const resetGameGrid = (row: number, col: number) => {
+    gameGrids[row][col] = {
       ...unoccupiedGameGrid,
     };
   };
@@ -92,7 +91,10 @@ const useGameGrids = () => {
     // 斜め3つ揃っているかの判定：右上 → 左下
     nn = 0;
     for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
-      nn += gameGrids[ii][MAX_COL - ii - 1].gamePlayerKey === gamePlayerKey ? 1 : 0;
+      nn +=
+        gameGrids[ii][GAME_GRIDS.MAX_COL - ii - 1].gamePlayerKey === gamePlayerKey
+          ? 1
+          : 0;
     }
     if (nn == GAME_GRIDS.MAX_ROW) return true;
 
@@ -101,10 +103,17 @@ const useGameGrids = () => {
   };
 
   const checkAllOccupied = (): boolean => {
-    const occupiedCount = gameGrids.reduce((nn, gameGrid) => {
-      return gameGrid.occupied === true ? nn + 1 : nn;
-    }, 0);
-    return occupiedCount === MAX_ROW * MAX_COL;
+    const maxOccupiedCount = GAME_GRIDS.MAX_ROW * GAME_GRIDS.MAX_COL;
+    let occupiedCount = 0;
+    for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
+      for (let jj = GAME_GRIDS.MIN_COL; jj < GAME_GRIDS.MAX_COL; jj++) {
+        if (gameGrids[ii][jj].occupied === true) {
+          occupiedCount += 1;
+        }
+      }
+    }
+    console.log(occupiedCount);
+    return occupiedCount === maxOccupiedCount;
   };
 
   return [

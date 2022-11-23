@@ -26,7 +26,7 @@ type ContextType = {
 
 export const GameStateContext = createContext<ContextType>({} as ContextType);
 export const GameStateProvider: FC<Props> = ({ children }) => {
-  const [{ GAME_TURN }] = useConstants();
+  const [{ GAME_PLAYER_KEYS, GAME_RESULT }] = useConstants();
 
   const [gameMode, { initGameMode, setGameModeToGameOver }] = useGameMode();
   const [gameResult, { initGameResult, setGameResult }] = useGameResult();
