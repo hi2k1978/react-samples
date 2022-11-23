@@ -12,13 +12,12 @@ const useGamePlayers = (yourName: GamePlayerName, opponentName: GamePlayerName) 
   const [gamePlayers, setGamePlayers] =
     useState<Map<GamePlayerKey, GamePlayerName>>(defaultGamePlayerMap);
 
-  const getYourName = useCallback((): GamePlayerName => {
-    return gamePlayers.get(GAME_PLAYER_KEYS.YOU);
-  }, [gamePlayers]);
-
-  const getOpponentName = useCallback((): GamePlayerName => {
-    return gamePlayers.get(GAME_PLAYER_KEYS.OPPONENT);
-  }, [gamePlayers]);
+  const getGamePlayerName = useCallback(
+    (key: GamePlayerKey): GamePlayerName => {
+      return gamePlayers.get(key);
+    },
+    [gamePlayers],
+  );
 
   const setGamePlayerNames = useCallback(
     (you: GamePlayerName, opponent: GamePlayerName) => {
@@ -28,6 +27,12 @@ const useGamePlayers = (yourName: GamePlayerName, opponentName: GamePlayerName) 
     [gamePlayers],
   );
 
-  return [gamePlayers, { getYourName, getOpponentName, setGamePlayerNames }];
+  return [
+    gamePlayers,
+    {
+      getGamePlayerName,
+      setGamePlayerNames,
+    },
+  ];
 };
 export default useGamePlayers;

@@ -3,16 +3,17 @@ import useConstants from '../hooks/useConstants.ts';
 
 const useGameTurn = () => {
   const [{ GAME_TURN }] = useConstants();
-  const [gameTurn, setGameTurn] = useState<number>(GAME_TURN.FIRST_TURN);
+  const [gameTurn, setGameTurn] = useState<number>(null);
 
-  const initGameTurn = () => {
+  const setFirstGameTurn = () => {
     setGameTurn(GAME_TURN.FIRST_TURN);
   };
-  const advanceGameTurn = () => {
+
+  const increaseGameTurn = () => {
     setGameTurn(gameTurn + GAME_TURN.TURN_ADVANCE);
   };
 
-  const rewindGameTurn = () => {
+  const decreaseGameTurn = () => {
     const rewindedGameTurn = gameTurn - GAME_TURN.TURN_REWIND;
     if (rewindedGameTurn < 1) {
       const errorMessage = 'Game Turn is less than 1.';
@@ -22,6 +23,6 @@ const useGameTurn = () => {
     setGameTurn(rewindedGameTurn);
   };
 
-  return [gameTurn, { initGameTurn, advanceGameTurn, rewindGameTurn }];
+  return [gameTurn, { setFirstGameTurn, increaseGameTurn, decreaseGameTurn }];
 };
 export default useGameTurn;

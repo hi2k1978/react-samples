@@ -17,15 +17,15 @@ const useConstants = () => {
     MAX_COL: 3,
   } as const;
 
-  const GAME_MODE = {
-    GAME_OVER: 0,
-    ON_GAME: 1,
-  } as const;
-
   const GAME_TURN = {
     FIRST_TURN: 1,
     TURN_ADVANCE: 1,
     TURN_REWIND: 1,
+  } as const;
+
+  const GAME_MODE = {
+    GAME_OVER: 0,
+    ON_GAME: 1,
   } as const;
 
   const GAME_RESULT = {
@@ -43,6 +43,7 @@ const useConstants = () => {
       DEFAULT_GAME_PLAYER_NAMES,
       GAME_GRIDS,
       GAME_TURN,
+      GAME_MODE,
       GAME_RESULT,
       SLEEP_TIME,
     },

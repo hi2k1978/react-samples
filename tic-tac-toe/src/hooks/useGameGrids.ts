@@ -61,7 +61,7 @@ const useGameGrids = () => {
     };
   };
 
-  const checkGameEnd = (gamePlayerKey: GamePlayerKey): boolean => {
+  const checkWin = (gamePlayerKey: GamePlayerKey): boolean => {
     let nn;
 
     // 横3つ揃っているかの判定
@@ -114,7 +114,7 @@ const useGameGrids = () => {
       getGameGrid,
       setGameGrid,
       resetGameGrid,
-      checkGameEnd,
+      checkWin,
       checkAllOccupied,
     },
   ];

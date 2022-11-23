@@ -3,8 +3,6 @@ import { GamePlayerKey, GamePlayerName, GameGrid, GameResult } from '../types/ty
 
 import useConstants from '../hooks/useConstants';
 import useGameGrids from '../hooks/useGameGrids';
-import useGameMode from '../hooks/useGameMode';
-import useGameTurn from '../hooks/useGameTurn';
 
 type Props = {
   children: ReactNode;
@@ -12,7 +10,6 @@ type Props = {
 
 type ContextType = {
   gameGrids: GameGrid[][];
-  gameGrids: () => void;
   initGameGrids: () => void;
   getGameGrid: (col: number, row: number) => void;
   setGameGrid: (
@@ -22,17 +19,8 @@ type ContextType = {
     gameTurn: number,
   ) => void;
   resetGameGrid: (col: number, row: number) => void;
-  checkGameEnd: (gamePlayerKey: GamePlayerKey) => void;
+  checkWin: (gamePlayerKey: GamePlayerKey) => void;
   checkAllOccupied: () => void;
-  onGame: boolean;
-  gameResult: GameResult;
-  initGameProgress: () => void;
-  toggleOnGame: () => void;
-  setGameResult: (gameResult: GameResult) => void;
-  gameTurn: number;
-  initGameTurn: () => void;
-  advanceGameTurn: () => void;
-  rewindedGameTurn: () => void;
 };
 
 export const GameGridsContext = createContext<ContextType>({} as ContextType);
@@ -47,14 +35,10 @@ export const GameGridsProvider: FC<Props> = ({ children }) => {
       getGameGrid,
       setGameGrid,
       resetGameGrid,
-      checkGameEnd,
+      checkWin,
       checkAllOccupied,
     },
   ] = useGameGrids();
-  const [onGame, gameResult, { initGameProgress, toggleOnGame, setGameResult }] =
-    useGameMode();
-
-  const [gameTurn, { initGameTurn, advanceGameTurn, rewindedGameTurn }] = useGameTurn();
 
   return (
     <GameGridsContext.Provider
@@ -64,17 +48,8 @@ export const GameGridsProvider: FC<Props> = ({ children }) => {
         getGameGrid,
         setGameGrid,
         resetGameGrid,
-        checkGameEnd,
+        checkWin,
         checkAllOccupied,
-        onGame,
-        gameResult,
-        initGameProgress,
-        toggleOnGame,
-        setGameResult,
-        gameTurn,
-        initGameTurn,
-        advanceGameTurn,
-        rewindedGameTurn,
       }}
     >
       {children}

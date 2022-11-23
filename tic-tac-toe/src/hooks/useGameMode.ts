@@ -1,19 +1,17 @@
 import React, { useCallback, useState } from 'react';
-import { GameResult } from '../types/types';
+import { GameMode } from '../types/types';
 import useConstants from '../hooks/useConstants.ts';
 
 const useGameMode = () => {
-  const [{ GAME_RESULT }] = useConstants();
-  const [onGame, setOnGame] = useState<boolean>(true);
-  const [gameResult, setGameResult] = useState<GameResult>(GAME_RESULT.ON_GAME);
-  const initGameProgress = () => {
-    setOnGame(true);
-    setGameResult(GAME_RESULT.ON_GAME);
+  const [{ GAME_MODE }] = useConstants();
+  const [gameMode, setGameMode] = useState<GameMode>(GAME_MODE.ON_GAME);
+  const initGameMode = () => {
+    setGameMode(GAME_MODE.ON_GAME);
   };
-  const toggleOnGame = () => {
-    setOnGame(!onGame);
+  const setGameModeToGameOver = () => {
+    setGameMode(GAME_MODE.GAME_OVER);
   };
 
-  return [onGame, gameResult, { initGameProgress, toggleOnGame, setGameResult }];
+  return [gameMode, { initGameMode, setGameModeToGameOver }];
 };
 export default useGameMode;

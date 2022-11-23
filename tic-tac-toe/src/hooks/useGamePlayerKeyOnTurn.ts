@@ -3,11 +3,16 @@ import React, { useCallback, useState } from 'react';
 import useConstants from '../hooks/useConstants';
 import { GamePlayerKey } from '../types/types';
 
-const useGamePlayerKeyOnTurn = (gamePlayerKey: GamePlayerKey) => {
+const useGamePlayerKeyOnTurn = () => {
   const [{ GAME_PLAYER_KEYS }] = useConstants();
 
-  const [gamePlayerKeyOnTurn, setGamePlayerKeyOnTurn] =
-    useState<GamePlayerKey>(gamePlayerKey);
+  const [gamePlayerKeyOnTurn, setGamePlayerKeyOnTurn] = useState<GamePlayerKey>(
+    GAME_PLAYER_KEYS.YOU,
+  );
+
+  const initGamePlayerKeyOnTurn = (firstGamePlayerKey: GamePlayerKey) => {
+    setGamePlayerKeyOnTurn(firstGamePlayerKey);
+  };
 
   const toggleGamePlayerKeyOnTurn = useCallback(() => {
     const key =
@@ -17,15 +22,6 @@ const useGamePlayerKeyOnTurn = (gamePlayerKey: GamePlayerKey) => {
     setGamePlayerKeyOnTurn(key);
   }, [gamePlayerKeyOnTurn]);
 
-  const setGamePlayerKeyOnTurnRandomly = useCallback(() => {
-    const values = Object.values(GAME_PLAYER_KEYS);
-    const ii = Math.floor(Math.random() * values.length);
-    setGamePlayerKeyOnTurn(values[ii]);
-  }, []);
-
-  return [
-    gamePlayerKeyOnTurn,
-    { toggleGamePlayerKeyOnTurn, setGamePlayerKeyOnTurnRandomly },
-  ];
+  return [gamePlayerKeyOnTurn, { initGamePlayerKeyOnTurn, toggleGamePlayerKeyOnTurn }];
 };
 export default useGamePlayerKeyOnTurn;
