@@ -26,7 +26,7 @@ graph TD;
 | id            | hige       | nahunah       |
 |---------------|------------|---------------|
 | hanuanuhnahun | nuhnhau    | inihnhunahun  |
-|               |            | inuhaunhanuh  |
+| >             | >          | inuhaunhanuh  |
 |---------------|------------|---------------|
 | hunahnuha     | anhunahunh | - unanhun     |
 |               |            | - hnahunh     |
