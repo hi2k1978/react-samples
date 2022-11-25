@@ -1,5 +1,5 @@
 @startuml
-title コンテキストとフックの関連図
+title Relationship Diagram of Hooks and Contexts
 
 class "UserRegistView.tsx" as UserRegistView {
 

@@ -1,8 +1,8 @@
 @startuml
-title グリッド選択時のシーケンス
+title Grid Select Sequence
 hide footbox
 
-Actor "Player on Turn" as Player
+Actor "Turn Player" as Player
 participant "TicTacToeView" as TicTacToeView
 participant "GameGridContext" as GameGrid
 participant "GameStateContext" as GameState
@@ -11,7 +11,7 @@ participant "GameTurnContext" as GameTurn
 Player -> TicTacToeView: selectGameGrid( )
 activate TicTacToeView
 
-opt when game is not 'on_game'
+opt when game is not on game
     TicTacToeView -> GameState:
     activate GameState
     GameState -> GameState: check gameMode !== 'on_game'
@@ -72,6 +72,10 @@ opt when game is draw
 end
 
 TicTacToeView -> GameTurn: advanceGameTurn( )
+note right
+     Go to next turn, and change player on turn
+     when game does not end.
+end note
 activate GameTurn
 GameTurn --> TicTacToeView
 deactivate GameTurn
