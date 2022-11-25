@@ -1,9 +1,8 @@
 # ○×ゲーム(TicTacToe)
 
-## 要素説明
+## 要素
 
-
-### アトミックデザイン説明
+### アトミックデザイン
 #### ページ ("views/")
 
 |   | 物理名         | 論理名               | 説明                             |
@@ -19,7 +18,7 @@
 | 1 | GamePlayerOnTurnView.tsx | 手番プレイヤー表示コンポーネント | あなたと対戦者の名前を入力するコンポーネント |
 | 2 | YouVsOpponentView.tsx    | 名前表示画面                     | あなたと対戦者の名前を表示するコンポーネント |
 
-### フック説明
+### フック
 
 #### コンテキスト ("contexts/")
 
@@ -41,7 +40,7 @@
 |   | useGameTurn.ts            | ターンフック     | ターン数や手番のプレイヤーといったターンの情報を管理するフック |
 |   | useGameSleep.ts           | スリープフック   | スリープ関数を管理するフック                                   |
 
-#### フック図
+#### フック・コンテキスト関連図
 
 ![hook diagram](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/doc/hooks.svg)
 
@@ -52,4 +51,10 @@
 |---|-------------------|--------------------------|----------------------------------------------------------|
 | 1 | GAME_PLAYER_KEYS  | プレイヤーのキー情報     | あなたと対戦者のキー情報の定数                           |
 | 2 | DEFAULT_GAME_PLAYER_NAMES | デフォルトのプレイヤー名 | プレイヤー名入力画面の入力欄に初期表示されるプレイヤー名の定数 |
+
+## シーケンス制御
+
+### グリッド選択時
+
+![selectGameGrid sequence](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/doc/selectGameGrid.svg)
 
