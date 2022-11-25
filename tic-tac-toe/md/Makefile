@@ -3,6 +3,6 @@
 all:
 	@echo 'this is tic-tac-toe.'
 clean:
-	@\rm -rf *.png *.svg
+	@\rm *.png *.svg
 diagram:
-	plantuml -svg hooks.pu
+	plantuml -svg hooks.plu
