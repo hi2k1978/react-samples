@@ -1,9 +1,9 @@
 @startuml
-title マス(GameGrid)選択時のシーケンス
+title グリッド選択時のシーケンス
 hide footbox
 
 Actor "Player on Turn" as Player
-participant "TicTacToeViewContext" as TicTacToeView
+participant "TicTacToeView" as TicTacToeView
 participant "GameGridContext" as GameGrid
 participant "GameStateContext" as GameState
 participant "GameTurnContext" as GameTurn
