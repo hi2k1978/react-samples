@@ -87,7 +87,7 @@ note right
      when game does not end.
 end note
 activate GameTurn
-GameTurn -> GameTurn: advanceGameTurn( )
+GameTurn -> GameTurn: increaseGameTurn( )
 GameTurn -> GameTurn: toggleGamePlayerKeyOnTurn( )
 GameTurn --> TicTacToeView
 deactivate GameTurn
