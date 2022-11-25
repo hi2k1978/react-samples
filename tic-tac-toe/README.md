@@ -2,6 +2,7 @@
 
 ## 要素説明
 
+
 ### アトミックデザイン説明
 #### ページ ("views/")
 
@@ -39,6 +40,10 @@
 |   | useGamePlayers.ts         | プレイヤーフック | プレイヤーの情報を管理するフック                                          |
 |   | useGameTurn.ts            | ターンフック     | ターン数や手番のプレイヤーといったターンの情報を管理するフック |
 |   | useGameSleep.ts           | スリープフック   | スリープ関数を管理するフック                                   |
+
+#### フック図
+
+![hook diagram](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/doc/hooks.svg)
 
 ### 定数説明
 #### 定数 (in "hooks/useConstants.ts")
