@@ -42,7 +42,7 @@
 
 #### フック・コンテキスト関連図
 
-![hook diagram](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/doc/hooks.svg)
+![hook diagram](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/md/hooks.svg)
 
 ### 定数説明
 #### 定数 (in "hooks/useConstants.ts")
@@ -56,5 +56,5 @@
 
 ### グリッド選択時
 
-![selectGameGrid sequence](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/doc/selectGameGrid.svg)
+![selectGameGrid sequence](https://github.com/hi2k1978/react-samples/blob/main/tic-tac-toe/md/selectGameGrid.svg)
 
