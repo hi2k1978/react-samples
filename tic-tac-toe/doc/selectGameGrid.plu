@@ -1,0 +1,82 @@
+@startuml
+title マス(GameGrid)選択時のシーケンス
+hide footbox
+
+Actor "Player on Turn" as Player
+participant "TicTacToeViewContext" as TicTacToeView
+participant "GameGridContext" as GameGrid
+participant "GameStateContext" as GameState
+participant "GameTurnContext" as GameTurn
+
+Player -> TicTacToeView: selectGameGrid( )
+activate TicTacToeView
+
+opt when game is not 'on_game'
+    TicTacToeView -> GameState:
+    activate GameState
+    GameState -> GameState: check gameMode !== 'on_game'
+    GameState --> TicTacToeView: boolean
+    deactivate GameState
+    TicTacToeView --> Player: early return
+end
+
+TicTacToeView -> GameGrid: getGameGrid(row, col)
+activate GameGrid
+GameGrid --> TicTacToeView: selectedGameGrid
+deactivate GameGrid
+
+opt when selected grid is already occupied
+    TicTacToeView -> GameGrid
+    activate GameGrid
+    GameGrid -> GameGrid: check selectedGameGrid.occupied === true
+    GameGrid --> TicTacToeView:boolean
+    deactivate GameGrid
+    TicTacToeView --> Player: early return
+end
+
+TicTacToeView -> GameGrid: setGameGrid(row, col, gamePlayerKey, gameTurn)
+activate GameGrid
+GameGrid --> TicTacToeView:
+deactivate GameGrid
+
+opt when player wins
+    TicTacToeView -> GameGrid: checkWin(gamePlayerKey)
+    note right
+    	 Three same marks are placed in horizontal, vertical, or diagonal row.
+    end note
+    activate GameGrid
+    GameGrid --> TicTacToeView: boolean
+    deactivate GameGrid
+
+    TicTacToeView -> GameState: setGameEndWithWin(gamePlayerKey)
+    activate GameState
+    GameState --> TicTacToeView
+    deactivate GameState
+    TicTacToeView --> Player: early return
+end
+
+opt when game is draw
+    TicTacToeView -> GameGrid: checkDraw(gamePlayerKey)
+    note right
+    	 All grids are occupied with marks.
+    end note
+    activate GameGrid
+    GameGrid --> TicTacToeView: boolean
+    deactivate GameGrid
+
+    TicTacToeView -> GameState: setGameEndWithDraw( )
+    activate GameState
+    GameState --> TicTacToeView
+    deactivate GameState
+    TicTacToeView --> Player: early return
+end
+
+TicTacToeView -> GameTurn: advanceGameTurn( )
+activate GameTurn
+GameTurn --> TicTacToeView
+deactivate GameTurn
+
+TicTacToeView --> Player: 
+deactivate TicTacToeView
+
+@enduml
