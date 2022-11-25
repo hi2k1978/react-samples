@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { GamePlayersContext } from '../contexts/GamePlayers.tsx';
+import { GamePlayersContext } from '../contexts/GamePlayersContext.tsx';
 
 export default function UserRegist() {
   const navigate = useNavigate();

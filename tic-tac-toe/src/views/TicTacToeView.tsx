@@ -3,10 +3,10 @@ import { GamePlayerKey, GamePlayerName } from '../types/types';
 import { useNavigate } from 'react-router-dom';
 
 // Contexts
-import { GameGridsContext } from '../contexts/GameGrids.tsx';
-import { GamePlayersContext } from '../contexts/GamePlayers.tsx';
-import { GameStateContext } from '../contexts/GameState.tsx';
-import { GameTurnContext } from '../contexts/GameTurn.tsx';
+import { GameGridsContext } from '../contexts/GameGridsContext.tsx';
+import { GamePlayersContext } from '../contexts/GamePlayersContext.tsx';
+import { GameStateContext } from '../contexts/GameStateContext.tsx';
+import { GameTurnContext } from '../contexts/GameTurnContext.tsx';
 
 // Hooks
 import useConstants from '../hooks/useConstants.ts';
