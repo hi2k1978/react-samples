@@ -14,7 +14,7 @@ activate TicTacToeView
 opt when game is not on game
     TicTacToeView -> GameState:
     activate GameState
-    GameState -> GameState: check gameMode !== 'on_game'
+    GameState -> GameState: check gameMode !== 'ON_GAME'
     GameState --> TicTacToeView: boolean
     deactivate GameState
     TicTacToeView --> Player: early return
@@ -49,7 +49,12 @@ opt when player wins
     deactivate GameGrid
 
     TicTacToeView -> GameState: setGameEndWithWin(gamePlayerKey)
+    note right
+    	 gameMode: ON_GAME -> GAME_OVER
+    end note
     activate GameState
+    GameState -> GameState: setGameModeToGameOver( )
+    GameState -> GameState: setGameResult(PLAYER_WIN)
     GameState --> TicTacToeView
     deactivate GameState
     TicTacToeView --> Player: early return
@@ -65,7 +70,12 @@ opt when game is draw
     deactivate GameGrid
 
     TicTacToeView -> GameState: setGameEndWithDraw( )
+    note right
+    	 gameMode: ON_GAME -> GAME_OVER
+    end note
     activate GameState
+    GameState -> GameState: setGameModeToGameOver( )
+    GameState -> GameState: setGameResult(DRAW)
     GameState --> TicTacToeView
     deactivate GameState
     TicTacToeView --> Player: early return
@@ -73,10 +83,12 @@ end
 
 TicTacToeView -> GameTurn: advanceGameTurn( )
 note right
-     Go to next turn, and change player on turn
+     Go to next turn, and change turn player
      when game does not end.
 end note
 activate GameTurn
+GameTurn -> GameTurn: advanceGameTurn( )
+GameTurn -> GameTurn: toggleGamePlayerKeyOnTurn( )
 GameTurn --> TicTacToeView
 deactivate GameTurn
 
