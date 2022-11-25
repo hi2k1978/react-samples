@@ -1,3 +1,79 @@
 @startuml
-Hello <|-- World
-@enduml
+title コンテキストとフックの関連図
+
+class "UserRegistView.tsx" as UserRegistView {
+
+}
+class "TicTacToeView.tsx" as TicTacToeView {
+
+}
+
+
+class "GameGridsContext.tsx" as GameGridsContext {
+}
+
+class "GamePlayersContext" as GamePlayersContext {
+      gamePlayers: Map<GamePlayerKey, GamePlayerName>
+      getGamePlayerName: () => GamePlayerName
+      getYourName: () => GamePlayerName
+      getOpponentName: () => GamePlayerName
+      getGamePlayerKeyRandomly: () => GamePlayerKey
+      setGamePlayerNames: (you: GamePlayerName, opponent: GamePlayerName) => void
+      initGamePlayerNames: () => void
+}
+
+class "GameStateContext.tsx" as GameStateContext {
+}
+
+class "GameTurnContext.tsx" as GameTurnContext {
+}
+
+
+class "useConstants.ts" as useConstants {}
+
+class "useGameGrids.ts" as useGameGrids {}
+
+class "useGamePlayers.ts" as useGamePlayers {
+      gamePlayers: Map<GamePlayerKey, GamePlayerName>
+      getGamePlayerName: () => GamePlayerName
+      setGamePlayerNames: (you: GamePlayerName, opponent: GamePlayerName) => void
+}
+
+class "useGameMode.ts" as useGameMode {}
+class "useGameResult.ts" as useGameResult {}
+class "useGameTurn.ts" as useGameTurn {}
+class "useGamePlayerKeyOnTurn.ts" as useGamePlayerKeyOnTurn {}
+
+UserRegistView <.. GamePlayersContext
+TicTacToeView <.. GameGridsContext
+TicTacToeView <.. GamePlayersContext
+TicTacToeView <.. GameStateContext
+TicTacToeView <.. GameTurnContext
+TicTacToeView <.. useConstants
+
+GameGridsContext <.. useConstants
+GameGridsContext <.. useGameGrids
+
+GamePlayersContext <.. useConstants
+GamePlayersContext <.. useGamePlayers
+
+GameStateContext <.. useConstants
+GameStateContext <.. useGameMode
+GameStateContext <.. useGameResult
+
+GameTurnContext <.. useGamePlayers
+GameTurnContext <.. useGameTurn
+GameTurnContext <.. useGamePlayerKeyOnTurn
+
+@enduml	   
+
+
+
+
+
+
+
+
+
+
+
