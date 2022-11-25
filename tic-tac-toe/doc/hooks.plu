@@ -9,10 +9,10 @@ class "TicTacToeView.tsx" as TicTacToeView {
 }
 
 
-class "useGameGridsContext.tsx" as GameGridsContext {
+class "GameGridsContext.tsx" as GameGridsContext {
 }
 
-class "GamePlayersContext" as GamePlayersContext {
+class "GamePlayersContext.tsx" as GamePlayersContext {
       gamePlayers: Map<GamePlayerKey, GamePlayerName>
       getGamePlayerName()
       getYourName()
@@ -22,10 +22,10 @@ class "GamePlayersContext" as GamePlayersContext {
       initGamePlayerNames()
 }
 
-class "useGameStateContext.tsx" as GameStateContext {
+class "GameStateContext.tsx" as GameStateContext {
 }
 
-class "useGameTurnContext.tsx" as GameTurnContext {
+class "GameTurnContext.tsx" as GameTurnContext {
 }
 
 
