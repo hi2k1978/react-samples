@@ -11,11 +11,11 @@ type Props = {
 type ContextType = {
   // Name of Game Player
   gamePlayers: Map<GamePlayerKey, GamePlayerName>;
-  getGamePlayerName: () => void;
+  getGamePlayerName: () => GamePlayerName;
+  getYourName: () => GamePlayerName;
+  getOpponentName: () => GamePlayerName;
+  getGamePlayerKeyRandomly: () => GamePlayerKey;
   setGamePlayerNames: (you: GamePlayerName, opponent: GamePlayerName) => void;
-  getYourName: () => void;
-  getOpponentName: () => void;
-  getGamePlayerKeyRandomly: () => void;
   initGamePlayerNames: () => void;
 };
 
