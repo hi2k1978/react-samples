@@ -9,23 +9,23 @@ class "TicTacToeView.tsx" as TicTacToeView {
 }
 
 
-class "GameGridsContext.tsx" as GameGridsContext {
+class "useGameGridsContext.tsx" as GameGridsContext {
 }
 
 class "GamePlayersContext" as GamePlayersContext {
       gamePlayers: Map<GamePlayerKey, GamePlayerName>
-      getGamePlayerName: () => GamePlayerName
-      getYourName: () => GamePlayerName
-      getOpponentName: () => GamePlayerName
-      getGamePlayerKeyRandomly: () => GamePlayerKey
-      setGamePlayerNames: (you: GamePlayerName, opponent: GamePlayerName) => void
-      initGamePlayerNames: () => void
+      getGamePlayerName()
+      getYourName()
+      getOpponentName()
+      getGamePlayerKeyRandomly()
+      setGamePlayerNames(you, opponent)
+      initGamePlayerNames()
 }
 
-class "GameStateContext.tsx" as GameStateContext {
+class "useGameStateContext.tsx" as GameStateContext {
 }
 
-class "GameTurnContext.tsx" as GameTurnContext {
+class "useGameTurnContext.tsx" as GameTurnContext {
 }
 
 
@@ -35,8 +35,8 @@ class "useGameGrids.ts" as useGameGrids {}
 
 class "useGamePlayers.ts" as useGamePlayers {
       gamePlayers: Map<GamePlayerKey, GamePlayerName>
-      getGamePlayerName: () => GamePlayerName
-      setGamePlayerNames: (you: GamePlayerName, opponent: GamePlayerName) => void
+      getGamePlayerName()
+      setGamePlayerNames(you, opponent)
 }
 
 class "useGameMode.ts" as useGameMode {}
