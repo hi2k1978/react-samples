@@ -60,7 +60,7 @@ const useGameGrids = () => {
     };
   };
 
-  const checkWin = (gamePlayerKey: GamePlayerKey): boolean => {
+  const checkGameEndWithWin = (gamePlayerKey: GamePlayerKey): boolean => {
     let nn;
 
     // 横3つ揃っているかの判定
@@ -102,7 +102,7 @@ const useGameGrids = () => {
     return false;
   };
 
-  const checkDraw = (): boolean => {
+  const checkGameEndWithDraw = (): boolean => {
     const maxOccupiedCount = GAME_GRIDS.MAX_ROW * GAME_GRIDS.MAX_COL;
     let occupiedCount = 0;
     for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
@@ -122,8 +122,8 @@ const useGameGrids = () => {
       getGameGrid,
       setGameGrid,
       resetGameGrid,
-      checkWin,
-      checkDraw,
+      checkGameEndWithWin,
+      checkGameEndWithDraw,
     },
   ];
 };

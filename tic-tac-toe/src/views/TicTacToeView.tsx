@@ -26,8 +26,8 @@ export default function TicTacToe() {
     getGameGrid,
     setGameGrid,
     resetGameGrid,
-    checkWin,
-    checkDraw,
+    checkGameEndWithWin,
+    checkGameEndWithDraw,
   } = useContext(GameGridsContext);
 
   const {
@@ -71,12 +71,12 @@ export default function TicTacToe() {
     // プレイヤーがGridを選択
     setGameGrid(col, row, gamePlayerKey, gameTurn);
     // 勝利判定
-    if (checkWin(gamePlayerKey)) {
+    if (checkGameEndWithWin(gamePlayerKey)) {
       setGameEndWithWin(gamePlayerKey);
       return;
     }
     // グリッドが全て選択されたかの判定
-    if (checkDraw()) {
+    if (checkGameEndWithDraw()) {
       setGameEndWithDraw();
       return;
     }
