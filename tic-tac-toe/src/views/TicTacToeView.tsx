@@ -104,11 +104,11 @@ export default function TicTacToe() {
     <>
       <h4>ゲーム画面</h4>
       <YouVsOpponentView yourName={yourName} opponentName={opponentName} />
+      <br />
       <GamePlayerOnTurnView
         gamePlayerNameOnTurn={gamePlayerNameOnTurn}
         gameTurn={gameTurn}
       />
-      <br />
       <GameModeView
         gameMode={gameMode}
         gameResult={gameResult}
