@@ -1,23 +1,24 @@
 @startuml
 title Relationship Diagram of Hooks and Contexts
 
-class "UserRegistView.tsx" as UserRegistView {
-	yourName
-	oppeonentName
-	inputYourName
-	inputOpponentName
-	handelSubmit(event)
-}
+together {
+	object "UserRegistView.tsx" as UserRegistView
+	UserRegistView : yourName
+	UserRegistView : oppeonentName
+	UserRegistView : inputYourName
+	UserRegistView : inputOpponentName
+	UserRegistView : handelSubmit(event)
+	
+	object "TicTacToeView.tsx" as TicTacToeView 
+	TicTacToeView : yourName
+	TicTacToeView : opponentName
+	TicTacToeView : gamePlayerNameOnTurn
+	TicTacToeView : selectGameGrid()
+	TicTacToeView : initGameStart()
+	TicTacToeView : goBack()
 
-class "TicTacToeView.tsx" as TicTacToeView {
-	yourName
-	oppeonentName
-	gamePlayerNameOnTurn
-	selectGameGrid()
-	initGameStart()
-	goBack()
 }
-
+together {
 class "GameGridsContext.tsx" as GameGridsContext {
 	gameGrids
 	initGameGrids()
@@ -54,16 +55,9 @@ class "GameTurnContext.tsx" as GameTurnContext {
 	rewindGameTurn()
 }
 
-
-class "useConstants.ts" as useConstants {
-	GAME_PLAYER_KEYS
-	DEFAULT_GAME_PLAYER_NAMES
-	GAME_GRIDS
-	GAME_TURN
-	GAME_MODE
-	GAME_RESULT
-	SLEEP_TIME
 }
+
+together {
 
 class "useGameGrids.ts" as useGameGrids {
 	gameGrids
@@ -105,27 +99,42 @@ class "useGamePlayerKeyOnTurn.ts" as useGamePlayerKeyOnTurn {
 	initGamePlayerKeyOnTurn()
 	toggleGamePlayerKeyOnTurn()
 }
+}
 
+/'
+class "useConstants.ts" as useConstants {
+	GAME_PLAYER_KEYS
+	DEFAULT_GAME_PLAYER_NAMES
+	GAME_GRIDS
+	GAME_TURN
+	GAME_MODE
+	GAME_RESULT
+	SLEEP_TIME
+}
+'/
 UserRegistView <.. GamePlayersContext
+
+'TicTacToeView <.. useConstants
 TicTacToeView <.. GameGridsContext
 TicTacToeView <.. GamePlayersContext
 TicTacToeView <.. GameStateContext
 TicTacToeView <.. GameTurnContext
-TicTacToeView <.. useConstants
 
-GameGridsContext <.. useConstants
+'GameGridsContext <.. useConstants
 GameGridsContext <.. useGameGrids
 
-GamePlayersContext <.. useConstants
+'GamePlayersContext <.. useConstants
 GamePlayersContext <.. useGamePlayers
 
-GameStateContext <.. useConstants
+'GameStateContext <.. useConstants
 GameStateContext <.. useGameMode
 GameStateContext <.. useGameResult
 
-GameTurnContext <.. useConstants
+'GameTurnContext <.. useConstants
 GameTurnContext <.. useGamePlayerKeyOnTurn
 GameTurnContext <.. useGameTurn
+
+'useGameTurn <.. useConstants
 
 @enduml	   
 
