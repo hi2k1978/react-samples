@@ -84,7 +84,7 @@ GameTurn -> GameTurn ++: advanceGameTurn( )
 GameTurn -> GameTurn: increaseGameTurn( )
 GameTurn -> GameTurn: toggleGamePlayerKeyOnTurn( )
 GameTurn -->  GameTurn --:
-GameTurn --> TicTacToeView:
+GameTurn --> TicTacToeView --:
 
 TicTacToeView --> Player --: 
 @enduml
