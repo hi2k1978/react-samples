@@ -66,6 +66,8 @@ export default function TicTacToe() {
     gamePlayerKey: GamePlayerKey,
     gameTurn: number,
   ) => {
+    console.log(gameMode, GAME_MODE.ON_GAME);
+    if (gameMode !== GAME_MODE.ON_GAME) return;
     const selectedGameGrid = getGameGrid(col, row);
     if (selectedGameGrid.occupied === true) return;
     // プレイヤーがGridを選択
