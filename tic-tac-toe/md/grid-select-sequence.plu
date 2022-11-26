@@ -91,7 +91,7 @@ opt when game is draw
     TicTacToeView --> Player: early return
 end
 
-TicTacToeView -> GameTurn: go to next game turn
+TicTacToeView -> GameTurn: go to next turn
 note right
      Go to next turn, and change turn player
      when game does not end.
