@@ -11,14 +11,14 @@ type Props = {
 type ContextType = {
   gameGrids: GameGrid[][];
   initGameGrids: () => void;
-  getGameGrid: (col: number, row: number) => void;
+  getGameGrid: (row: number, col: number) => void;
   setGameGrid: (
-    col: number,
     row: number,
+    col: number,
     gamePlayerKey: GamePlayerKey,
     gameTurn: number,
   ) => void;
-  resetGameGrid: (col: number, row: number) => void;
+  resetGameGrid: (row: number, col: number) => void;
   checkGameEndWithWin: (gamePlayerKey: GamePlayerKey) => void;
   checkGameEndWithDraw: () => void;
 };

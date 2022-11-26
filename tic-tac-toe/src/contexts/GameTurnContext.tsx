@@ -19,7 +19,7 @@ type ContextType = {
   // Game Turn
   gameTurn: number;
   gamePlayerKeyOnTurn: GamePlayerKey;
-  initGameTurn: () => void;
+  initGameTurn: (firstGamePlayerKey) => void;
   advanceGameTurn: () => void;
   rewindedGameTurn: () => void;
 };
