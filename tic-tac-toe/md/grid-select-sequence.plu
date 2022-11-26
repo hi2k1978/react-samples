@@ -8,16 +8,13 @@ participant "GameGridContext" as GameGrid
 participant "GameStateContext" as GameState
 participant "GameTurnContext" as GameTurn
 
-Player -> TicTacToeView: selectGameGrid( )
-activate TicTacToeView
+Player -> TicTacToeView ++: selectGameGrid( )
 
 opt when game is over
-    TicTacToeView -> GameState: check game is over
-    activate GameState
-    GameState -> GameState: gameMode !== 'ON_GAME'
-    GameState --> TicTacToeView: boolean
-    deactivate GameState
-    TicTacToeView --> Player: early return
+	TicTacToeView -> GameState ++: check game is over
+	GameState -> GameState: gameMode !== 'ON_GAME'
+	GameState --> TicTacToeView --: boolean
+	TicTacToeView --> Player: early return
 end
 
 TicTacToeView -> GameGrid: get grid data in (row, col)
@@ -27,84 +24,67 @@ GameGrid --> TicTacToeView: selectedGameGrid
 deactivate GameGrid
 
 opt when selected grid is already occupied
-    TicTacToeView -> GameGrid: check selected grid is occupied
-    activate GameGrid
-    GameGrid -> GameGrid: selectedGameGrid.occupied === true
-    GameGrid --> TicTacToeView:boolean
-    deactivate GameGrid
-    TicTacToeView --> Player: early return
+TicTacToeView -> GameGrid: check selected grid is occupied
+activate GameGrid
+	GameGrid -> GameGrid: selectedGameGrid.occupied === true
+	GameGrid --> TicTacToeView:boolean
+deactivate GameGrid
+TicTacToeView --> Player: early return
 end
 
-TicTacToeView -> GameGrid: set grid data in (row, col)
-activate GameGrid
+TicTacToeView -> GameGrid ++: set grid data in (row, col)
 GameGrid -> GameGrid: setGameGrid(row, col, gamePlayerKey, gameTurn)
-GameGrid --> TicTacToeView:
-deactivate GameGrid
+GameGrid --> TicTacToeView --:
 
 opt when player wins
-    TicTacToeView -> GameGrid: check player wins
-    note right
-    	 Three same marks are placed in horizontal, vertical, or diagonal row.
-    end note
-    activate GameGrid
-    GameGrid -> GameGrid: checkGameEndWithWin(gamePlayerKey)
-    GameGrid --> TicTacToeView: boolean
-    deactivate GameGrid
+	TicTacToeView -> GameGrid ++: check player wins
+	note right
+	Three same marks are placed in horizontal, vertical, or diagonal row.
+	end note
+	GameGrid -> GameGrid: checkGameEndWithWin(gamePlayerKey)
+	GameGrid --> TicTacToeView --: boolean
 
-    TicTacToeView -> GameState: setGameEndWithWin(gamePlayerKey)
-    note right
-    	 gameMode: ON_GAME -> GAME_OVER
-    end note
-    activate GameState
-    GameState -> GameState: setGameEnd()
-    activate GameState
-    GameState -> GameState: setGameModeToGameOver( )
-    GameState -> GameState: setGameResult(PLAYER_WIN)
-    GameState --> TicTacToeView
-    deactivate GameState
-    deactivate GameState
-    TicTacToeView --> Player: early return
+	TicTacToeView -> GameState ++: setGameEndWithWin(gamePlayerKey)
+	note right
+	gameMode: ON_GAME -> GAME_OVER
+	end note
+	GameState -> GameState ++: setGameEnd()
+	GameState -> GameState: setGameModeToGameOver( )
+	GameState -> GameState: setGameResult(PLAYER_WIN)
+	GameState --> GameState --: 
+	GameState --> TicTacToeView --: 
+	TicTacToeView --> Player: early return
 end
 
 opt when game is draw
-    TicTacToeView -> GameGrid: check game is draw
-    note right
-    	 All grids are occupied with marks.
-    end note
-    activate GameGrid
-    GameGrid -> GameGrid: checkGameEndWithDraw(gamePlayerKey)
-    GameGrid --> TicTacToeView: boolean
-    deactivate GameGrid
-    deactivate GameGrid
-    TicTacToeView -> GameState: setGameEndWithDraw( )
-    note right
-    	 gameMode: ON_GAME -> GAME_OVER
-    end note
-    activate GameState
-    GameState -> GameState: setGameEnd()
-    activate GameState
-    GameState -> GameState: setGameModeToGameOver( )
-    GameState -> GameState: setGameResult(DRAW)
-    GameState --> TicTacToeView
-    deactivate GameState
-    deactivate GameState
-    TicTacToeView --> Player: early return
+	TicTacToeView -> GameGrid ++: check game is draw
+	note right
+	All grids are occupied with marks.
+	end note
+	GameGrid -> GameGrid: checkGameEndWithDraw(gamePlayerKey)
+	GameGrid --> TicTacToeView --: boolean
+	
+	TicTacToeView -> GameState ++: setGameEndWithDraw( )
+	note right
+	gameMode: ON_GAME -> GAME_OVER
+	end note
+	GameState -> GameState ++: setGameEnd()
+	GameState -> GameState: setGameModeToGameOver( )
+	GameState -> GameState: setGameResult(DRAW)
+	GameState --> GameState --: 
+	GameState --> TicTacToeView --: 
+	TicTacToeView --> Player: early return
 end
 
-TicTacToeView -> GameTurn: go to next turn
+TicTacToeView -> GameTurn ++: next turn
 note right
-     Go to next turn, and change turn player
-     when game does not end.
+	in next turn, change turn player
 end note
-activate GameTurn
-GameTurn -> GameTurn: advanceGameTurn( )
-activate GameTurn
+GameTurn -> GameTurn ++: advanceGameTurn( )
 GameTurn -> GameTurn: increaseGameTurn( )
 GameTurn -> GameTurn: toggleGamePlayerKeyOnTurn( )
-GameTurn --> TicTacToeView
-deactivate GameTurn
-deactivate GameTurn
-TicTacToeView --> Player: 
-deactivate TicTacToeView
+GameTurn -->  GameTurn --:
+GameTurn --> TicTacToeView:
 
+TicTacToeView --> Player --: 
 @enduml
