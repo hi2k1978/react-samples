@@ -124,7 +124,7 @@ export default function TicTacToe() {
       />
       <br />
       <div>
-        <button type="button" onClick={resetGame}>
+        <button type="submit" onClick={resetGame}>
           リセット
         </button>
         <button type="submit" onClick={goBack} style={{ marginLeft: '8px' }}>
