@@ -3,10 +3,10 @@ title Grid Select Sequence
 hide footbox
 
 Actor "Turn Player" as Player
-participant "TicTacToeView.tsx" as TicTacToeView
-participant "GameGridContext.tsx" as GameGrid
-participant "GameStateContext.tsx" as GameState
-participant "GameTurnContext.tsx" as GameTurn
+participant "TicTacToeView" as TicTacToeView
+participant "GameGridContext" as GameGrid
+participant "GameStateContext" as GameState
+participant "GameTurnContext" as GameTurn
 
 Player -> TicTacToeView: selectGameGrid( )
 activate TicTacToeView
