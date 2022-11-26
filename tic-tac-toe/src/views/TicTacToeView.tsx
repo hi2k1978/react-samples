@@ -86,7 +86,7 @@ export default function TicTacToe() {
     advanceGameTurn();
   };
 
-  const resetGame = useCallback(() => {
+  const reset = useCallback(() => {
     initGame();
   }, [gameGrids, gameTurn, gamePlayerKeyOnTurn, gameMode, gameResult]);
 
@@ -124,7 +124,7 @@ export default function TicTacToe() {
       />
       <br />
       <div>
-        <button type="submit" onClick={resetGame}>
+        <button type="submit" onClick={reset}>
           リセット
         </button>
         <button type="submit" onClick={goBack} style={{ marginLeft: '8px' }}>
