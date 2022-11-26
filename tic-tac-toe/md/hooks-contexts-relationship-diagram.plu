@@ -2,109 +2,108 @@
 title Relationship Diagram of Hooks and Contexts
 
 class "UserRegistView.tsx" as UserRegistView {
-      yourName
-      oppeonentName
-      inputYourName
-      inputOpponentName
-      handelSubmit(event)
+	yourName
+	oppeonentName
+	inputYourName
+	inputOpponentName
+	handelSubmit(event)
 }
 
 class "TicTacToeView.tsx" as TicTacToeView {
-      yourName
-      oppeonentName
-      gamePlayerNameOnTurn
-      selectGameGrid()
-      initGameStart()
-      goBack()
+	yourName
+	oppeonentName
+	gamePlayerNameOnTurn
+	selectGameGrid()
+	initGameStart()
+	goBack()
 }
 
 class "GameGridsContext.tsx" as GameGridsContext {
-      gameGrids
-      initGameGrids()
-      getGameGrid(row, col)
-      setGameGrid(row, col, gamePlayerKey, gameTurn)
-      resetGameGrid(row, col)
-      checkWin(gamePlayerKey)
-      checkDraw()
+	gameGrids
+	initGameGrids()
+	getGameGrid(row, col)
+	setGameGrid(row, col, gamePlayerKey, gameTurn)
+	resetGameGrid(row, col)
+	checkGameEndWithWin(gamePlayerKey)
+	checkGameEndWithDraw()
 }
 
 class "GamePlayersContext.tsx" as GamePlayersContext {
-      gamePlayers
-      getGamePlayerName()
-      getYourName()
-      getOpponentName()
-      getGamePlayerKeyRandomly()
-      setGamePlayerNames(you, opponent)
-      initGamePlayerNames()
+	gamePlayers
+	getGamePlayerName()
+	getYourName()
+	getOpponentName()
+	getGamePlayerKeyRandomly()
+	setGamePlayerNames(you, opponent)
+	initGamePlayerNames()
 }
 
 class "GameStateContext.tsx" as GameStateContext {
-      gameMode
-      gameResult
-      initGameState()
-      setGameEndWithWin(gamePlayerKey)
-      setGameEndWithDraw()
+	gameMode
+	gameResult
+	initGameState()
+	setGameEndWithWin(gamePlayerKey)
+	setGameEndWithDraw()
 }
 
 class "GameTurnContext.tsx" as GameTurnContext {
-      gameTurn
-      gamePlayerKeyOnTurn
-      initGameTurn()
-      advanceGameTurn()
-      rewindGameTurn()
-      setFirstGameTurn()
+	gameTurn
+	gamePlayerKeyOnTurn
+	initGameTurn()
+	advanceGameTurn()
+	rewindGameTurn()
 }
 
 
 class "useConstants.ts" as useConstants {
-      GAME_PLAYER_KEYS
-      DEFAULT_GAME_PLAYER_NAMES
-      GAME_GRIDS
-      GAME_TURN
-      GAME_MODE
-      GAME_RESULT
-      SLEEP_TIME
+	GAME_PLAYER_KEYS
+	DEFAULT_GAME_PLAYER_NAMES
+	GAME_GRIDS
+	GAME_TURN
+	GAME_MODE
+	GAME_RESULT
+	SLEEP_TIME
 }
 
 class "useGameGrids.ts" as useGameGrids {
-      gameGrids
-      initGameGrids()
-      getGameGrid(row, col)
-      setGameGrid(row, col, gamePlayerKey, gameTurn)
-      resetGameGrid(row, col)
-      checkWin(gamePlayerKey)
-      checkDraw()
+	gameGrids
+	initGameGrids()
+	getGameGrid(row, col)
+	setGameGrid(row, col, gamePlayerKey, gameTurn)
+	resetGameGrid(row, col)
+	checkWin(gamePlayerKey)
+	checkDraw()
 }
 
 class "useGamePlayers.ts" as useGamePlayers {
-      gamePlayers
-      getGamePlayerName(gamePlayerKey)
-      setGamePlayerNames(you, opponent)
+	gamePlayers
+	getGamePlayerName(gamePlayerKey)
+	setGamePlayerNames(you, opponent)
 }
 
 class "useGameMode.ts" as useGameMode {
-      gameMode
-      initGameMode()
-      setGameModeToGameOver()
+	gameMode
+	initGameMode()
+	setGameModeToGameOver()
 }
 
 class "useGameResult.ts" as useGameResult {
-      gameResult
-      initGameResult()
-      setGameResult(gameResult)
+	gameResult
+	initGameResult()
+	setGameResult(gameResult)
 }
 
 class "useGameTurn.ts" as useGameTurn {
-      gameTurn
-      setGameTurn()
-      increaseGameTurn()
-      decreaseGameTurn()
+	gameTurn
+	setFirstGameTurn()
+	increaseGameTurn()
+	decreaseGameTurn()
 }
 
 class "useGamePlayerKeyOnTurn.ts" as useGamePlayerKeyOnTurn {
-      gamePlayerKeyOnTurn
-      initGamePlayerKeyOnTurn()
-      toggleGamePlayerKeyOnTurn()
+	gamePlayerKeyOnTurn
+	initGamePlayerKeyOnTurn()
+	toggleGamePlayerKeyOnTurn()
 }
 
 UserRegistView <.. GamePlayersContext
