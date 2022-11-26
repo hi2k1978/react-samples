@@ -4,11 +4,11 @@ svgs=$(src:.plu=.svg)
 pngs=$(src:.plu=.png)
 .PHONY: all clean md svgs pngs
 
-all: plantuml
-	@echo 'generate diagrams(svg,png) from plantuml files'
+all: md
+	@echo 'generate images(svg) from plantuml files'
 clean:
-	@echo "delete all image files[png,svg]"
-	@\rm -f *.png *.svg
+	@echo "delete image files[png]"
+	@\rm -f *.png
 
 md: svgs pngs
 svgs: $(svgs)
