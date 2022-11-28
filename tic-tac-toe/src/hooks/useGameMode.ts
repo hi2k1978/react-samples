@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { GameMode } from '../types/types';
+
 import useConstants from '../hooks/useConstants.ts';
+import { GameMode } from '../types/types';
 
 const useGameMode = () => {
   const [{ GAME_MODE }] = useConstants();

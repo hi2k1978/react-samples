@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { GameResult } from '../types/types';
+
 import useConstants from '../hooks/useConstants.ts';
+import { GameResult } from '../types/types';
 
 const useGameResult = () => {
   const [{ GAME_RESULT }] = useConstants();

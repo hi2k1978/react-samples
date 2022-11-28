@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { GameGrid, GamePlayerKey } from '../types/types';
+
 import GameGridView from '../components/GameGridView.tsx';
 import useConstants from '../hooks/useConstants';
+import { GameGrid, GamePlayerKey } from '../types/types';
 
 type Props = {
   gameGrids: GameGrid[][];
@@ -12,11 +13,11 @@ type Props = {
 const GameGridsView = React.memo(function view(props) {
   const [{ GAME_GRIDS }] = useConstants();
   const { gameGrids, gamePlayerKey, gameTurn, selectGameGrid } = props;
-  let rows = [];
+  const rows = [];
   for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
     rows.push(ii);
   }
-  let cols = [];
+  const cols = [];
   for (let ii = GAME_GRIDS.MIN_COL; ii < GAME_GRIDS.MAX_COL; ii++) {
     cols.push(ii);
   }

@@ -1,16 +1,16 @@
 import React, {
   createContext,
-  useContext,
   FC,
   ReactNode,
   useCallback,
+  useContext,
   useState,
 } from 'react';
-import { GamePlayerKey, GameMode, GameResult } from '../types/types';
 
 import useConstants from '../hooks/useConstants.ts';
 import useGameMode from '../hooks/useGameMode.ts';
 import useGameResult from '../hooks/useGameResult.ts';
+import { GameMode, GamePlayerKey, GameResult } from '../types/types';
 
 type Props = {
   children: ReactNode;

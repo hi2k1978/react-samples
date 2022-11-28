@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
-import { GameMode, GameResult, GamePlayerName } from '../types/types';
+
 import useConstants from '../hooks/useConstants.ts';
+import { GameMode, GamePlayerName, GameResult } from '../types/types';
 
 type Props = {
   gameMode: GameMode;

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import { GameGrid } from '../types/types';
 
 type Props = {

@@ -1,8 +1,8 @@
 import React, { createContext, FC, ReactNode, useState } from 'react';
-import { GamePlayerKey, GamePlayerName, GameGrid, GameResult } from '../types/types';
 
 import useConstants from '../hooks/useConstants';
 import useGameGrids from '../hooks/useGameGrids';
+import { GameGrid, GamePlayerKey, GamePlayerName, GameResult } from '../types/types';
 
 type Props = {
   children: ReactNode;
