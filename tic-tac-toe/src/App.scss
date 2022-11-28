@@ -27,15 +27,15 @@ p {
   font-size: 0.9rem;
 }
 
-button {
-  outline: none;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 35px;
+// button {
+//   outline: none;
+//   border: none;
+//   border-radius: 8px;
+//   padding: 10px 35px;
 
-  background: #845ec2;
-  color: white;
-}
+//   background: #845ec2;
+//   color: white;
+// }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -72,4 +72,27 @@ button {
 
 button {
   font-size: calc(10px + 2vmin);
+}
+
+.game-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8vh;
+    height: 8vh;
+    font-size: 128px;
+    color: #ffffff;
+    
+}
+
+.game-grid-red {
+    background-color: #e85298;
+}
+
+.game-grid-blue {
+    background-color: #64c0ab;
+}
+
+.game-grid-grey {
+    background-color: #4d4398;
 }

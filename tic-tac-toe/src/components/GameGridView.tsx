@@ -13,43 +13,13 @@ const GameGridView = React.memo(function view(props) {
   if (gameGrid.occupied === true) {
     switch (gameGrid.oddTurn) {
       case true:
-        return (
-          <div>
-            ○○○
-            <br />
-            ○○○
-            <br />
-            ○○○
-          </div>
-        );
+        return <div className="game-grid game-grid-red">○</div>;
       case false:
-        return (
-          <div>
-            ×××
-            <br />
-            ×××
-            <br />
-            ×××
-          </div>
-        );
+        return <div className="game-grid game-grid-blue">×</div>;
     }
   }
   // gameGrid.occupied is true
   const nn = 1 + row * 3 + col;
-  return (
-    <div onClick={onClick}>
-      {nn}
-      {nn}
-      {nn}
-      <br />
-      {nn}
-      {nn}
-      {nn}
-      <br />
-      {nn}
-      {nn}
-      {nn}
-    </div>
-  );
+  return <div onClick={onClick} className="game-grid game-grid-grey"></div>;
 });
 export default GameGridView;
