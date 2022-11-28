@@ -7,8 +7,8 @@ pngs=$(src:.plu=.png)
 all: md
 	@echo 'generate images(svg) from plantuml files'
 clean:
-	@echo "delete image files[png]"
-	@\rm -f *.png
+	@echo "delete image files[png, svg]"
+	@\rm -f *.png *.svg
 
 md: svgs pngs
 svgs: $(svgs)

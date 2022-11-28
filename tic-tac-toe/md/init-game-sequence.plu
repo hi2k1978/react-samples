@@ -37,8 +37,9 @@ GameState -> GameState ++ : initGameState()
 note right
 	game-mode is initialized to 'on game'.
 end note
-GameState -> GameState -- : initGameMode()
-GameState -> GameState -- : initGameResult()
+GameState -> GameState : initGameMode()
+GameState -> GameState : initGameResult()
+GameState --> GameState -- : 
 GameState --> TicTacToeView -- : 
 
 TicTacToeView --> TicTacToeView -- : initGame()
