@@ -1,8 +1,7 @@
 # ○×ゲーム(TicTacToe)
 
-## 要素
 
-### アトミックデザイン
+## アトミックデザイン
 #### ページ ("views/")
 
 |   | 物理名         | 論理名               | 説明                             |
@@ -18,7 +17,11 @@
 | 1 | GamePlayerOnTurnView.tsx | 手番プレイヤー表示コンポーネント | あなたと対戦者の名前を入力するコンポーネント |
 | 2 | YouVsOpponentView.tsx    | 名前表示画面                     | あなたと対戦者の名前を表示するコンポーネント |
 
-### フック
+## フック
+
+#### フック・コンテキスト関係図
+
+![hook diagram](md/hooks-contexts-relationship-diagram.svg)
 
 #### コンテキスト ("contexts/")
 
@@ -40,12 +43,8 @@
 |   | useGameTurn.ts            | ターンフック     | ターン数や手番のプレイヤーといったターンの情報を管理するフック |
 |   | useGameSleep.ts           | スリープフック   | スリープ関数を管理するフック                                   |
 
-#### フック・コンテキスト関連図
 
-![hook diagram](md/hooks-contexts-relationship-diagram.svg)
-
-### 定数説明
-#### 定数 (in "hooks/useConstants.ts")
+## 定数 (in "hooks/useConstants.ts")
 
 |   | 物理名            | 論理名                   | 説明                                                     |
 |---|-------------------|--------------------------|----------------------------------------------------------|
