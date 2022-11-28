@@ -37,7 +37,7 @@ TicTacToeView -> GameGrid ++: set grid data in (row, col)
 GameGrid -> GameGrid: setGameGrid(row, col, gamePlayerKey, gameTurn)
 GameGrid --> TicTacToeView --:
 
-opt when player wins
+opt when turn player wins
 	TicTacToeView -> GameGrid ++: check player wins
 	note right
 	Three same marks are placed in horizontal, vertical, or diagonal row.
@@ -45,13 +45,15 @@ opt when player wins
 	GameGrid -> GameGrid: checkGameEndWithWin(gamePlayerKey)
 	GameGrid --> TicTacToeView --: boolean
 
-	TicTacToeView -> GameState ++: setGameEndWithWin(gamePlayerKey)
+	TicTacToeView -> GameState ++: set result with winning of turn player
 	note right
 	gameMode: ON_GAME -> GAME_OVER
 	end note
-	GameState -> GameState ++: setGameEnd()
+	GameState -> GameState ++: setGameEndWithWin(gamePlayerKey)
+	GameState -> GameState ++: setGameEnd(PLAYER_WIN)
 	GameState -> GameState: setGameModeToGameOver( )
 	GameState -> GameState: setGameResult(PLAYER_WIN)
+	GameState --> GameState --: 
 	GameState --> GameState --: 
 	GameState --> TicTacToeView --: 
 	TicTacToeView --> Player: early return
@@ -65,13 +67,15 @@ opt when game is draw
 	GameGrid -> GameGrid: checkGameEndWithDraw(gamePlayerKey)
 	GameGrid --> TicTacToeView --: boolean
 	
-	TicTacToeView -> GameState ++: setGameEndWithDraw( )
+	TicTacToeView -> GameState ++: set result with draw game
 	note right
 	gameMode: ON_GAME -> GAME_OVER
 	end note
-	GameState -> GameState ++: setGameEnd()
+	GameState -> GameState ++: setGameEndWithDraw()
+	GameState -> GameState ++: setGameEnd(DRAW)
 	GameState -> GameState: setGameModeToGameOver( )
 	GameState -> GameState: setGameResult(DRAW)
+	GameState --> GameState --: 
 	GameState --> GameState --: 
 	GameState --> TicTacToeView --: 
 	TicTacToeView --> Player: early return

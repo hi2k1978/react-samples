@@ -2,7 +2,7 @@
 title Init Game Sequence
 hide footbox
 
-Actor "Turn Player" as Player
+Actor "System" as Player
 participant "TicTacToeView" as TicTacToeView
 participant "GamePlayersContext" as GamePlayers
 participant "GameGridContext" as GameGrid
