@@ -19,122 +19,94 @@ together {
 
 }
 together {
-class "GameGridsContext.tsx" as GameGridsContext {
-	gameGrids
-	initGameGrids()
-	getGameGrid(row, col)
-	setGameGrid(row, col, gamePlayerKey, gameTurn)
-	resetGameGrid(row, col)
-	checkGameEndWithWin(gamePlayerKey)
-	checkGameEndWithDraw()
-}
+	object "GameGridsContext.tsx" as GameGridsContext
+	GameGridsContext : gameGrids
+	GameGridsContext : initGameGrids()
+	GameGridsContext : getGameGrid(row, col)
+	GameGridsContext : setGameGrid(row, col, gamePlayerKey, gameTurn)
+	GameGridsContext : resetGameGrid(row, col)
+	GameGridsContext : checkGameEndWithWin(gamePlayerKey)
+	GameGridsContext : checkGameEndWithDraw()
+		
+	object "GamePlayersContext.tsx" as GamePlayersContext
+	GamePlayersContext : gamePlayers
+	GamePlayersContext : getGamePlayerName()
+	GamePlayersContext : getYourName()
+	GamePlayersContext : getOpponentName()
+	GamePlayersContext : getGamePlayerKeyRandomly()
+	GamePlayersContext : setGamePlayerNames(you, opponent)
+	GamePlayersContext : initGamePlayerNames()
 
-class "GamePlayersContext.tsx" as GamePlayersContext {
-	gamePlayers
-	getGamePlayerName()
-	getYourName()
-	getOpponentName()
-	getGamePlayerKeyRandomly()
-	setGamePlayerNames(you, opponent)
-	initGamePlayerNames()
-}
+	object "GameStateContext.tsx" as GameStateContext 
+	GameStateContext : gameMode
+	GameStateContext : gameResult
+	GameStateContext : initGameState()
+	GameStateContext : setGameEndWithWin(gamePlayerKey)
+	GameStateContext : setGameEndWithDraw()
 
-class "GameStateContext.tsx" as GameStateContext {
-	gameMode
-	gameResult
-	initGameState()
-	setGameEndWithWin(gamePlayerKey)
-	setGameEndWithDraw()
-}
-
-class "GameTurnContext.tsx" as GameTurnContext {
-	gameTurn
-	gamePlayerKeyOnTurn
-	initGameTurn()
-	advanceGameTurn()
-	rewindGameTurn()
-}
-
+	object "GameTurnContext.tsx" as GameTurnContext
+	GameTurnContext : gameTurn
+	GameTurnContext : gamePlayerKeyOnTurn
+	GameTurnContext : initGameTurn()
+	GameTurnContext : advanceGameTurn()
+	GameTurnContext : rewindGameTurn()
 }
 
 together {
 
-class "useGameGrids.ts" as useGameGrids {
-	gameGrids
-	initGameGrids()
-	getGameGrid(row, col)
-	setGameGrid(row, col, gamePlayerKey, gameTurn)
-	resetGameGrid(row, col)
-	checkWin(gamePlayerKey)
-	checkDraw()
+	object "useGameGrids.ts" as useGameGrids 
+	useGameGrids : gameGrids
+	useGameGrids : initGameGrids()
+	useGameGrids : getGameGrid(row, col)
+	useGameGrids : setGameGrid(row, col, gamePlayerKey, gameTurn)
+	useGameGrids : resetGameGrid(row, col)
+	useGameGrids : checkWin(gamePlayerKey)
+	useGameGrids : checkDraw()
+
+	object "useGamePlayers.ts" as useGamePlayers
+	useGamePlayers : gamePlayers
+	useGamePlayers : getGamePlayerName(gamePlayerKey)
+	useGamePlayers : setGamePlayerNames(you, opponent)
+
+	object "useGameMode.ts" as useGameMode
+	useGameMode : gameMode
+	useGameMode : initGameMode()
+	useGameMode : setGameModeToGameOver()
+
+	object "useGameResult.ts" as useGameResult
+	useGameResult : gameResult
+	useGameResult : initGameResult()
+	useGameResult : setGameResult(gameResult)
+
+	object "useGameTurn.ts" as useGameTurn
+	useGameTurn : gameTurn
+	useGameTurn : setFirstGameTurn()
+	useGameTurn : increaseGameTurn()
+	useGameTurn : decreaseGameTurn()
+	
+	object "useGamePlayerKeyOnTurn.ts" as useGamePlayerKeyOnTurn
+	useGamePlayerKeyOnTurn : gamePlayerKeyOnTurn
+	useGamePlayerKeyOnTurn : initGamePlayerKeyOnTurn()
+	useGamePlayerKeyOnTurn : toggleGamePlayerKeyOnTurn()
 }
 
-class "useGamePlayers.ts" as useGamePlayers {
-	gamePlayers
-	getGamePlayerName(gamePlayerKey)
-	setGamePlayerNames(you, opponent)
-}
-
-class "useGameMode.ts" as useGameMode {
-	gameMode
-	initGameMode()
-	setGameModeToGameOver()
-}
-
-class "useGameResult.ts" as useGameResult {
-	gameResult
-	initGameResult()
-	setGameResult(gameResult)
-}
-
-class "useGameTurn.ts" as useGameTurn {
-	gameTurn
-	setFirstGameTurn()
-	increaseGameTurn()
-	decreaseGameTurn()
-}
-
-class "useGamePlayerKeyOnTurn.ts" as useGamePlayerKeyOnTurn {
-	gamePlayerKeyOnTurn
-	initGamePlayerKeyOnTurn()
-	toggleGamePlayerKeyOnTurn()
-}
-}
-
-/'
-class "useConstants.ts" as useConstants {
-	GAME_PLAYER_KEYS
-	DEFAULT_GAME_PLAYER_NAMES
-	GAME_GRIDS
-	GAME_TURN
-	GAME_MODE
-	GAME_RESULT
-	SLEEP_TIME
-}
-'/
 UserRegistView <.. GamePlayersContext
 
-'TicTacToeView <.. useConstants
 TicTacToeView <.. GameGridsContext
 TicTacToeView <.. GamePlayersContext
 TicTacToeView <.. GameStateContext
 TicTacToeView <.. GameTurnContext
 
-'GameGridsContext <.. useConstants
 GameGridsContext <.. useGameGrids
 
-'GamePlayersContext <.. useConstants
 GamePlayersContext <.. useGamePlayers
 
-'GameStateContext <.. useConstants
 GameStateContext <.. useGameMode
 GameStateContext <.. useGameResult
 
-'GameTurnContext <.. useConstants
 GameTurnContext <.. useGamePlayerKeyOnTurn
 GameTurnContext <.. useGameTurn
 
-'useGameTurn <.. useConstants
 
 @enduml	   
 
