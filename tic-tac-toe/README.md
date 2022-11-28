@@ -19,7 +19,7 @@
 
 ## フック
 
-#### フック・コンテキスト関係図
+#### コンテキスト・カスタムフック関係図
 
 ![hook diagram](md/hooks-contexts-relationship-diagram.svg)
 
