@@ -1,0 +1,46 @@
+@startuml
+title Grid Select Sequence
+hide footbox
+
+Actor "Turn Player" as Player
+participant "TicTacToeView" as TicTacToeView
+participant "GamePlayersContext" as GamePlayers
+participant "GameGridContext" as GameGrid
+participant "GameStateContext" as GameState
+participant "GameTurnContext" as GameTurn
+
+Player -> TicTacToeView ++ : 
+
+TicTacToeView -> TicTacToeView ++ : initGame()
+
+TicTacToeView -> GameGrid ++ : initialize grids
+GameGrid -> GameGrid : initGameGrids()
+GameGrid --> TicTacToeView -- :
+
+TicTacToeView -> GamePlayers ++ : get the first game player
+GamePlayers -> GamePlayers : getGamePlayerKeyRandomly()
+GamePlayers --> TicTacToeView -- : gamePlayerKey
+
+TicTacToeView -> GameTurn ++ : initialize turn
+note right
+	turn number is initialized to one,
+	first game player is defined randomly from you or opponent.
+end note
+GameTurn -> GameTurn ++ : initGameTurn(gamePlayerKey)
+GameTurn -> GameTurn : setFirstGameTurn()
+GameTurn -> GameTurn : initGamePlayerKeyOnTurn(firstGamePlayerKey)
+GameTurn --> GameTurn -- :
+GameTurn --> TicTacToeView -- :
+
+TicTacToeView -> GameState ++ : initialize state
+GameState -> GameState ++ : initGameState()
+note right
+	game-mode is initialized to 'on game'.
+end note
+GameState -> GameState -- : initGameMode()
+GameState -> GameState -- : initGameResult()
+GameState --> TicTacToeView -- : 
+
+TicTacToeView --> TicTacToeView -- : initGame()
+TicTacToeView --> Player --: 
+@enduml

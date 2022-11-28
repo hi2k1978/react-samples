@@ -8,7 +8,8 @@ participant "GameGridContext" as GameGrid
 participant "GameStateContext" as GameState
 participant "GameTurnContext" as GameTurn
 
-Player -> TicTacToeView ++: selectGameGrid( )
+Player -> TicTacToeView ++: 
+TicTacToeView -> TicTacToeView ++: selectGameGrid( )
 
 opt when game is over
 	TicTacToeView -> GameState ++: check game is over
@@ -86,5 +87,6 @@ GameTurn -> GameTurn: toggleGamePlayerKeyOnTurn( )
 GameTurn -->  GameTurn --:
 GameTurn --> TicTacToeView --:
 
+TicTacToeView --> TicTacToeView --:
 TicTacToeView --> Player --: 
 @enduml
