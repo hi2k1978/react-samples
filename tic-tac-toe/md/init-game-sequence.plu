@@ -1,5 +1,5 @@
 @startuml
-title Grid Select Sequence
+title Init Game Sequence
 hide footbox
 
 Actor "Turn Player" as Player

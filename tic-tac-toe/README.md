@@ -54,6 +54,10 @@
 
 ## シーケンス制御
 
+### ゲーム初期化処理
+
+![initGame sequence](md/init-game-sequence.svg)
+
 ### グリッド選択時
 
 ![selectGameGrid sequence](md/grid-select-sequence.svg)
