@@ -20,6 +20,14 @@ const GameGridView = React.memo(function view(props) {
   }
   // gameGrid.occupied is true
   const nn = 1 + row * 3 + col;
-  return <div onClick={onClick} className="game-grid game-grid-grey"></div>;
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={onClick}
+      className="game-grid game-grid-grey"
+    ></div>
+  );
 });
 export default GameGridView;
