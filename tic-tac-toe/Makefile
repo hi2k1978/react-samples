@@ -1,14 +1,27 @@
 subdirs=./md
-.PHONY: all clean force md svgs pngs
+readme:=README.md
+pdf=$(readme:.md=.pdf)
 
-all:
-	@echo 'this is tic-tac-toe.'
+.PHONY: all clean force md svgs pngs pdf
+
+all: svgs pdf
+
 clean: $(subdirs)
+	\rm $(pdf)
+
+force:
 
 $(subdirs): force
 	make -C $@ $(MAKECMDGOALS)
-force:
 
 md: $(subdirs)
 svgs: $(subdirs)
 pngs: $(subdirs)
+
+$(pdf): $(readme) force
+	pandoc -V pagesize:a4 $< -f gfm -t html5 -o $@ -c ./md/github.css \
+		--pdf-engine=wkhtmltopdf \
+		--pdf-engine-opt=--enable-local-file-access
+
+pdf: $(pdf)
+
