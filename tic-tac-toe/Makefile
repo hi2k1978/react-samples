@@ -1,6 +1,7 @@
 subdirs=./md
 readme:=README.md
 pdf=$(readme:.md=.pdf)
+css=./md/github.css
 
 .PHONY: all clean force md svgs pngs pdf
 
@@ -19,7 +20,7 @@ svgs: $(subdirs)
 pngs: $(subdirs)
 
 $(pdf): $(readme) force
-	pandoc -V pagesize:a4 $< -f gfm -t html5 -o $@ -c ./md/github.css \
+	pandoc -V pagesize:a4 $< -f gfm -t html5 -o $@ -c $(css) \
 		--pdf-engine=wkhtmltopdf \
 		--pdf-engine-opt=--enable-local-file-access
 
