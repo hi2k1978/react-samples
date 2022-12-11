@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import useConstants from '../hooks/useConstants.ts';
+import useConstants from '../hooks/useConstants';
 import { GameMode, GamePlayerName, GameResult } from '../types/types';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
   yourName: GamePlayerName;
   opponentName: GamePlayerName;
 };
-const GameModeView = React.memo(function view(props) {
+const GameModeView = React.memo(function view(props: Props) {
   const [{ GAME_MODE, GAME_RESULT }] = useConstants();
   const { gameMode, gameResult, yourName, opponentName } = props;
   if (gameMode === GAME_MODE.ON_GAME) return <div>対戦中</div>;

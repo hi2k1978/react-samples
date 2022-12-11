@@ -7,9 +7,10 @@ import React, {
   useState,
 } from 'react';
 
-import useConstants from '../hooks/useConstants.ts';
-import useGamePlayerKeyOnTurn from '../hooks/useGamePlayerKeyOnTurn.ts';
-import useGameTurn from '../hooks/useGameTurn.ts';
+import useConstants from '../hooks/useConstants';
+import useGamePlayerKeyOnTurn from '../hooks/useGamePlayerKeyOnTurn';
+import useGameTurn from '../hooks/useGameTurn';
+import { GamePlayerKey } from '../types/types';
 
 type Props = {
   children: ReactNode;
@@ -19,9 +20,9 @@ type ContextType = {
   // Game Turn
   gameTurn: number;
   gamePlayerKeyOnTurn: GamePlayerKey;
-  initGameTurn: (firstGamePlayerKey) => void;
+  initGameTurn: (firstGamePlayerKey: GamePlayerKey) => void;
   advanceGameTurn: () => void;
-  rewindedGameTurn: () => void;
+  rewindGameTurn: () => void;
 };
 
 export const GameTurnContext = createContext<ContextType>({} as ContextType);

@@ -1,18 +1,18 @@
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import GameGridsView from '../components/GameGridsView.tsx';
-import GameModeView from '../components/GameModeView.tsx';
+import GameGridsView from '../components/GameGridsView';
+import GameModeView from '../components/GameModeView';
 // Views
-import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView.tsx';
-import YouVsOpponentView from '../components/YouVsOpponentView.tsx';
+import GamePlayerOnTurnView from '../components/GamePlayerOnTurnView';
+import YouVsOpponentView from '../components/YouVsOpponentView';
 // Contexts
-import { GameGridsContext } from '../contexts/GameGridsContext.tsx';
-import { GamePlayersContext } from '../contexts/GamePlayersContext.tsx';
-import { GameStateContext } from '../contexts/GameStateContext.tsx';
-import { GameTurnContext } from '../contexts/GameTurnContext.tsx';
+import { GameGridsContext } from '../contexts/GameGridsContext';
+import { GamePlayersContext } from '../contexts/GamePlayersContext';
+import { GameStateContext } from '../contexts/GameStateContext';
+import { GameTurnContext } from '../contexts/GameTurnContext';
 // Hooks
-import useConstants from '../hooks/useConstants.ts';
+import useConstants from '../hooks/useConstants';
 import { GamePlayerKey, GamePlayerName } from '../types/types';
 
 export default function TicTacToe() {

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import useConstants from '../hooks/useConstants.ts';
+import useConstants from '../hooks/useConstants';
 import { GameResult } from '../types/types';
 
 const useGameResult = () => {

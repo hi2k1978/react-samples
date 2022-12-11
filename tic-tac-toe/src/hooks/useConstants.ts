@@ -3,7 +3,6 @@ const useConstants = () => {
     YOU: 0,
     OPPONENT: 1,
   } as const;
-  type GamePlayerKeys = typeof GAME_PLAYER_KEYS[keyof typeof GAME_PLAYER_KEYS];
 
   const DEFAULT_GAME_PLAYER_NAMES = {
     YOU: '空条Ｑ太郎',

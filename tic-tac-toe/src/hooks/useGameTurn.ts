@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 
-import useConstants from '../hooks/useConstants.ts';
+import useConstants from '../hooks/useConstants';
 
 const useGameTurn = () => {
   const [{ GAME_TURN }] = useConstants();
-  const [gameTurn, setGameTurn] = useState<number>(null);
+  const [gameTurn, setGameTurn] = useState<number>(0);
 
   const setFirstGameTurn = () => {
     setGameTurn(GAME_TURN.FIRST_TURN);

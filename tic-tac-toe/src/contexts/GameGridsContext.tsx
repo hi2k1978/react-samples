@@ -11,7 +11,7 @@ type Props = {
 type ContextType = {
   gameGrids: GameGrid[][];
   initGameGrids: () => void;
-  getGameGrid: (row: number, col: number) => void;
+  getGameGrid: (row: number, col: number) => GameGrid;
   setGameGrid: (
     row: number,
     col: number,
@@ -19,14 +19,13 @@ type ContextType = {
     gameTurn: number,
   ) => void;
   resetGameGrid: (row: number, col: number) => void;
-  checkGameEndWithWin: (gamePlayerKey: GamePlayerKey) => void;
-  checkGameEndWithDraw: () => void;
+  checkGameEndWithWin: (gamePlayerKey: GamePlayerKey) => boolean;
+  checkGameEndWithDraw: () => boolean;
 };
 
 export const GameGridsContext = createContext<ContextType>({} as ContextType);
 export const GameGridsProvider: FC<Props> = ({ children }) => {
-  const [{ GAME_PLAYER_KEYS, GAME_PLAYER_NAMES, GAME_GRIDS, GAME_TURN, GAME_RESULT }] =
-    useConstants();
+  const [{ GAME_PLAYER_KEYS, GAME_GRIDS, GAME_TURN, GAME_RESULT }] = useConstants();
 
   const [
     gameGrids,

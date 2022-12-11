@@ -14,7 +14,7 @@ const useGamePlayers = (yourName: GamePlayerName, opponentName: GamePlayerName) 
 
   const getGamePlayerName = useCallback(
     (key: GamePlayerKey): GamePlayerName => {
-      return gamePlayers.get(key);
+      return gamePlayers.get(key) as GamePlayerName;
     },
     [gamePlayers],
   );

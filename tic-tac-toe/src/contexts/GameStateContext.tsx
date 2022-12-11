@@ -7,9 +7,9 @@ import React, {
   useState,
 } from 'react';
 
-import useConstants from '../hooks/useConstants.ts';
-import useGameMode from '../hooks/useGameMode.ts';
-import useGameResult from '../hooks/useGameResult.ts';
+import useConstants from '../hooks/useConstants';
+import useGameMode from '../hooks/useGameMode';
+import useGameResult from '../hooks/useGameResult';
 import { GameMode, GamePlayerKey, GameResult } from '../types/types';
 
 type Props = {

@@ -8,7 +8,7 @@ type Props = {
   gameGrid: GameGrid;
   onClick: () => void;
 };
-const GameGridView = React.memo(function view(props) {
+const GameGridView = React.memo(function view(props: Props) {
   const { row, col, gameGrid, onClick } = props;
   if (gameGrid.occupied === true) {
     switch (gameGrid.oddTurn) {

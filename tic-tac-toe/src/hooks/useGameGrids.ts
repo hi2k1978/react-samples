@@ -14,7 +14,7 @@ const useGameGrids = () => {
 
   const defaultGameGrids: GameGrid[][] = new Array<Array<GameGrid>>();
   for (let ii = GAME_GRIDS.MIN_ROW; ii < GAME_GRIDS.MAX_ROW; ii++) {
-    const row: GameGrids[] = new Array<GameGrid>();
+    const row: GameGrid[] = new Array<GameGrid>();
     for (let jj = GAME_GRIDS.MIN_COL; jj < GAME_GRIDS.MAX_COL; jj++) {
       row.push({
         ...unoccupiedGameGrid,

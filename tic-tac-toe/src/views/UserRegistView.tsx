@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { GamePlayersContext } from '../contexts/GamePlayersContext.tsx';
+import { GamePlayersContext } from '../contexts/GamePlayersContext';
 
 export default function UserRegist() {
   const navigate = useNavigate();
@@ -15,9 +15,12 @@ export default function UserRegist() {
   const inputYourName = useRef(null);
   const inputOpponentName = useRef(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setGamePlayerNames(inputYourName.current.value, inputOpponentName.current.value);
+    setGamePlayerNames(
+      (inputYourName.current as any).value,
+      (inputOpponentName.current as any).value,
+    );
     navigate('/tictactoe');
   };
   return (

@@ -3,12 +3,12 @@ import './App.scss';
 import React, { useContext, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { GameGridsProvider } from './contexts/GameGridsContext.tsx';
-import { GamePlayersProvider } from './contexts/GamePlayersContext.tsx';
-import { GameStateProvider } from './contexts/GameStateContext.tsx';
-import { GameTurnProvider } from './contexts/GameTurnContext.tsx';
-import TicTacToe from './views/TicTacToeView.tsx';
-import UserRegist from './views/UserRegistView.tsx';
+import { GameGridsProvider } from './contexts/GameGridsContext';
+import { GamePlayersProvider } from './contexts/GamePlayersContext';
+import { GameStateProvider } from './contexts/GameStateContext';
+import { GameTurnProvider } from './contexts/GameTurnContext';
+import TicTacToe from './views/TicTacToeView';
+import UserRegist from './views/UserRegistView';
 
 function App() {
   return (
