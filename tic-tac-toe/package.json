@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "lint:fix": "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore",
     "lint:format": "prettier  --loglevel warn --write \"./src/**/*.{ts,tsx,md,json}\" ",
