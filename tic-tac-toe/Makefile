@@ -33,8 +33,6 @@ pdf: $(pdf)
 
 docker-build: docker-rmi force
 	@npm run build
-	@echo "docker"
-	# sudo docker build -t $(dockertag) .
 	@sudo docker build -t $(dockertag) -f $(dockerfile) .
 
 docker-run: force
