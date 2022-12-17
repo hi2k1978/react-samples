@@ -1,14 +1,19 @@
-subdirs=./md
+subdirs:=./md
 readme:=README.md
-pdf=$(readme:.md=.pdf)
-css=./md/github.css
+pdf:=$(readme:.md=.pdf)
+html:=$(readme:.md=.html)
+css:=./md/github.css
 
-.PHONY: all clean force md svgs pngs pdf
+dockerfile:=httpd/Dockerfile
+dockertag:=tictactoe
+
+.PHONY: all clean force md svgs pngs pdf docker-build docker-run docker-stop docker-rmi
 
 all: svgs pdf
 
 clean: $(subdirs)
-	\rm $(pdf)
+	@\rm -f $(pdf) $(html)
+	@echo "clean current directory & sub-directories"
 
 force:
 
@@ -26,3 +31,21 @@ $(pdf): $(readme) force
 
 pdf: $(pdf)
 
+docker-build: docker-rmi force
+	@npm run build
+	@echo "docker"
+	# sudo docker build -t $(dockertag) .
+	@sudo docker build -t $(dockertag) -f $(dockerfile) .
+
+docker-run: force
+	@sudo docker run -dit --name $(dockertag) -p 8080:80 $(dockertag)
+
+docker-stop: force
+	@sudo docker stop $(dockertag)
+	@sudo docker rm $(dockertag)
+
+docker-rmi: force
+	@sudo docker rmi -f $(dockertag)
+
+docker-sh: force
+	@sudo docker exec -it $(dockertag) /bin/bash
